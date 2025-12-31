@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,7 +56,7 @@
             opacity: 1;
             transform: translateY(0);
         }
-        
+       
         /* Modal & Cart */
         .modal, .cart-sidebar, .lightbox {
             transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -79,7 +80,7 @@
             font-weight: bold;
             border: 2px solid var(--white);
         }
-        
+       
         /* Mobile menu dropdown persistence */
         .mobile-dropdown.open .mobile-dropdown-menu {
             display: block;
@@ -151,19 +152,46 @@
     <!-- Main Content -->
     <main>
         <!-- Home Section -->
-        <section id="home" class="page relative h-screen text-white overflow-hidden">
-             <div class="absolute inset-0 w-full h-full">
-                <div class="hero-slide active" style="background-image: url('https://images.pexels.com/photos/3171837/pexels-photo-3171837.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); background-size: cover; background-position: center;"></div>
-                <div class="hero-slide" style="background-image: url('https://images.pexels.com/photos/2263436/pexels-photo-2263436.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); background-size: cover; background-position: center;"></div>
-                <div class="hero-slide" style="background-image: url('https://images.pexels.com/photos/169198/pexels-photo-169198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); background-size: cover; background-position: center;"></div>
-            </div>
-            <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-            <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
-                <h1 class="text-6xl md:text-8xl font-love mb-6 leading-tight">Creating Unforgettable Moments</h1>
-                <p class="text-lg md:text-xl max-w-3xl mb-8 font-serif">From elegant weddings to whimsical kids' parties, we bring your vision to life.</p>
-                <a href="#contact" class="bg-gold text-charcoal-gray font-bold py-3 px-8 rounded-full hover:bg-yellow-300 transition duration-300 text-lg">Book Your Event</a>
-            </div>
-        </section>
+        <section id="home" class="page relative h-screen overflow-hidden text-white">
+    <div class="absolute inset-0 w-full h-full overflow-hidden">
+        <div id="hero-slides" class="flex w-[300%] h-full transition-transform duration-1000">
+            <div class="h-full w-full flex-shrink-0 bg-cover bg-center"
+                 style="background-image:url('https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg');"></div>
+            <div class="h-full w-full flex-shrink-0 bg-cover bg-center"                
+                style="background-image:url('https://images.pexels.com/photos/265940/pexels-photo-265940.jpeg');"></div>
+            <div class="h-full w-full flex-shrink-0 bg-cover bg-center"
+                 style="background-image:url('https://images.pexels.com/photos/2306277/pexels-photo-2306277.jpeg');"></div>
+            <div class="h-full w-full flex-shrink-0 bg-cover bg-center"
+                 style="background-image:url('https://images.pexels.com/photos/2306281/pexels-photo-2306281.jpeg');"></div>
+        </div>
+    </div>
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
+        <h1 class="text-6xl md:text-8xl font-love mb-6 leading-tight">
+            Creating Unforgettable Moments
+        </h1>
+        <p class="text-lg md:text-xl max-w-3xl mb-8 font-serif">
+            From elegant weddings to whimsical kids' parties, we bring your vision to life.
+        </p>
+        <a href="#contact" class="bg-gold text-charcoal-gray font-bold py-3 px-8 rounded-full hover:bg-yellow-300 transition duration-300 text-lg">
+            Book Your Event
+        </a>
+    </div>
+</section>
+
+<script>
+    const slidesContainer = document.getElementById('hero-slides');
+    const totalSlides = slidesContainer.children.length;
+    let currentSlide = 0;
+
+    function slideHero() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+
+    setInterval(slideHero, 4000); // slides every 4 seconds
+</script>
+
 
         <!-- Dynamic Content Area for other pages -->
         <div id="page-content"></div>
@@ -189,10 +217,10 @@
                 <a href="#" class="text-2xl hover:text-gold transition-colors"><i class="fab fa-pinterest-p"></i></a>
             </div>
             <p>&copy; 2024 Tadriels Event Planner & Rentals. All Rights Reserved.</p>
-            <p class="text-sm text-gray-400 mt-2">Website by Tadriels</p>
+            <p class="text-sm text-gray-400 mt-2">Website by © Tadriels,  All Rights Reserverd</p>
         </div>
     </footer>
-    
+   
     <!-- Cart Sidebar -->
     <div id="cart-sidebar" class="cart-sidebar fixed inset-0 bg-black bg-opacity-50 z-50 invisible opacity-0">
         <div id="cart-sidebar-content" class="cart-sidebar-content absolute top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col transform translate-x-full">
@@ -300,11 +328,17 @@
                     <div class="container mx-auto px-6">
                         <h2 class="text-4xl md:text-5xl font-serif text-center text-charcoal-gray mb-12 fade-in-up">Our Gallery</h2>
                         <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up"><img src="http://googleusercontent.com/file_content/1" alt="Bright and airy table setup with transparent chairs" class="gallery-img w-full h-full object-cover cursor-pointer transform hover:scale-105 transition-transform duration-300"></div>
-                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up"><img src="http://googleusercontent.com/file_content/2" alt="Elegant dark table setup for an event" class="gallery-img w-full h-full object-cover cursor-pointer transform hover:scale-105 transition-transform duration-300"></div>
-                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up"><img src="http://googleusercontent.com/file_content/3" alt="Outdoor event table with floral centerpiece" class="gallery-img w-full h-full object-cover cursor-pointer transform hover:scale-105 transition-transform duration-300"></div>
-                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up"><img src="http://googleusercontent.com/file_content/4" alt="Dark, moody table setup with baby's breath centerpiece" class="gallery-img w-full h-full object-cover cursor-pointer transform hover:scale-105 transition-transform duration-300"></div>
-                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up"><img src="http://googleusercontent.com/file_content/5" alt="Elegant table setup with pink and orange flowers" class="gallery-img w-full h-full object-cover cursor-pointer transform hover:scale-105 transition-transform duration-300"></div>
+                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up"><img src="https://images.pexels.com/photos/2788492/pexels-photo-2788492.jpeg
+" alt="Bright and airy table setup with transparent chairs" class="gallery-img w-full h-full object-cover cursor-pointer transform hover:scale-105 transition-transform duration-300"></div>
+                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up"><img src="https://images.pexels.com/photos/1045541/pexels-photo-1045541.jpeg
+" alt="Elegant dark table setup for an event" class="gallery-img w-full h-full object-cover cursor-pointer transform hover:scale-105 transition-transform duration-300"></div>
+                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up"><img src="https://images.pexels.com/photos/2062883/pexels-photo-2062883.jpeg
+" alt="Outdoor event table with floral centerpiece" class="gallery-img w-full h-full object-cover cursor-pointer transform hover:scale-105 transition-transform duration-300"></div>
+                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up"><img src="https://images.pexels.com/photos/33911554/pexels-photo-33911554.jpeg" alt="Dark, moody table setup with baby's breath centerpiece" class="gallery-img w-full h-full object-cover cursor-pointer transform hover:scale-105 transition-transform duration-300"></div>
+                        <div class="overflow-hidden rounded-lg shadow-lg fade-in-up"><img src="https://images.pexels.com/photos/19024675/pexels-photo-19024675.jpeg
+
+" alt="Elegant table setup with pink and orange flowers" class="gallery-img w-full h-full object-cover cursor-pointer transform hover:scale-105 transition-transform duration-300"></div>  
+                            
                         </div>
                     </div>
                 </section>`,
@@ -345,7 +379,7 @@
                                         <div><label for="event_time" class="block mb-1">Event Time*</label><input type="time" name="event_time" class="w-full p-3 rounded-md border border-gray-300" required></div>
                                     </div>
                                     <div><label for="message" class="block mb-1">Additional Details</label><textarea name="message" rows="4" class="w-full p-3 rounded-md border border-gray-300"></textarea></div>
-                                    
+                                   
                                     <h3 class="text-2xl font-serif border-b pb-4 pt-4">Your Contact Information</h3>
                                     <div><label for="customer_name" class="block mb-1">Customer Name*</label><input type="text" name="customer_name" class="w-full p-3 rounded-md border border-gray-300" required></div>
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -407,7 +441,7 @@
 
             // --- Cart Functions ---
             const saveCart = () => localStorage.setItem('tadrielsCart', JSON.stringify(cart));
-            
+           
             const calculateSubtotal = () => {
                 return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
             };
@@ -448,7 +482,7 @@
                 updateCartCount();
                 renderCartItems();
             };
-            
+           
             const updateQuantity = (itemName, newQuantity) => {
                  const item = cart.find(item => item.name === itemName);
                  if(item) {
@@ -471,7 +505,7 @@
                     checkoutBtn.disabled = true;
                     return;
                 }
-                
+               
                 checkoutBtn.classList.remove('opacity-50', 'cursor-not-allowed');
                 checkoutBtn.disabled = false;
                 subtotalDisplay.innerHTML = `<strong>Subtotal:</strong> $${calculateSubtotal().toFixed(2)}`;
@@ -502,7 +536,7 @@
                     cartSidebar.classList.add('invisible', 'opacity-0');
                 }, 300);
             };
-            
+           
             const openConfirmationModal = () => {
                 confirmationList.innerHTML = cart.map(item => `<p><strong>${item.quantity}x</strong> ${item.name} (@ $${item.price.toFixed(2)} each)</p>`).join('');
                 confirmationList.innerHTML += `<hr class="my-2"><p class="font-bold text-right">Subtotal: $${calculateSubtotal().toFixed(2)}</p>`;
@@ -547,7 +581,7 @@
                 } else {
                     homePage.style.display = 'block';
                 }
-                
+               
                 if (pageKey !== 'home') homePage.style.display = 'none';
 
                 window.scrollTo(0, 0);
@@ -571,7 +605,7 @@
                 document.querySelectorAll('.remove-from-cart-btn').forEach(btn => btn.addEventListener('click', (e) => removeFromCart(e.target.dataset.item)));
                 document.querySelectorAll('.quantity-input').forEach(input => input.addEventListener('change', (e) => updateQuantity(e.target.dataset.item, parseInt(e.target.value))));
                 document.querySelectorAll('.gallery-img').forEach(img => img.addEventListener('click', (e) => openLightbox(e.target.src)));
-                
+               
                 const inquiryForm = document.getElementById('inquiry-form');
                 if (inquiryForm) inquiryForm.addEventListener('submit', handleInquiryForm);
             };
@@ -636,7 +670,7 @@
                     }
                 });
             });
-            
+           
             mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
             mobileDropdowns.forEach(button => button.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -653,7 +687,7 @@
                     window.location.hash = '#checkout';
                 }
             });
-            
+           
             confirmYesBtn.addEventListener('click', sendInquiryEmail);
             confirmNoBtn.addEventListener('click', closeConfirmationModal);
             confirmationModal.addEventListener('click', (e) => { if(e.target === confirmationModal) closeConfirmationModal(); });
