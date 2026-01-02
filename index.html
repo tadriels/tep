@@ -610,7 +610,13 @@
 
             const setupPageEventListeners = () => {
                 document.querySelectorAll('.add-to-cart-btn').forEach(btn => btn.addEventListener('click', (e) => addToCart(e.target.dataset.item, e.target.dataset.price)));
-                document.querySelectorAll('.remove-from-cart-btn').forEach(btn => btn.addEventListener('click', (e) => removeFromCart(e.target.dataset.item)));
+                cartItemsContainer.addEventListener('click', (e) => {
+    if (e.target.classList.contains('remove-from-cart-btn')) {
+        const itemName = e.target.dataset.item;
+        removeFromCart(itemName);
+    }
+});
+
                 document.querySelectorAll('.quantity-input').forEach(input => input.addEventListener('change', (e) => updateQuantity(e.target.dataset.item, parseInt(e.target.value))));
                 document.querySelectorAll('.gallery-img').forEach(img => img.addEventListener('click', (e) => openLightbox(e.target.src)));
                
