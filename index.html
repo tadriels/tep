@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Tadriels Events offers premium rentals including bounce houses, flower walls, balloon decor, and full-service event planning for weddings, kids' parties, and milestone celebrations in Ontario." />
+    <meta name="description" content="Tadriels Events offers premium rentals including bounce houses, flower walls, balloon decor, and full-service event planning for weddings, kids' parties, and more." />
     <title>Tadriels Events | Premium Event Decor & Planning</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -19,7 +19,8 @@
         }
         body {
             font-family: 'Poppins', sans-serif;
-            color: var(--black);
+            color: var(--charcoal-gray);
+            background-color: var(--white);
         }
         .font-serif {
             font-family: 'Lora', serif;
@@ -36,7 +37,7 @@
         .hero-slide.active { display: block; animation: fadeIn 1.5s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0.7; } to { opacity: 1; } }
 
-        .nav-link { position: relative; transition: color 0.3s; }
+        .nav-link { position: relative; transition: color 0.3s; color: inherit; text-decoration: none; }
         .nav-link::after {
             content: ''; position: absolute; width: 0; height: 2px;
             bottom: -5px; left: 50%; transform: translateX(-50%);
@@ -55,7 +56,7 @@
             opacity: 1;
             transform: translateY(0);
         }
-       
+
         /* Modal & Cart */
         .modal, .cart-sidebar, .lightbox {
             transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -63,7 +64,7 @@
         .cart-sidebar-content, .modal-content, .lightbox-content {
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
-        #cart-count {
+        #cart-count, #mobile-cart-count {
             position: absolute;
             top: -8px;
             right: -12px;
@@ -79,7 +80,7 @@
             font-weight: bold;
             border: 2px solid var(--white);
         }
-       
+
         /* Mobile menu dropdown persistence */
         .mobile-dropdown.open .mobile-dropdown-menu {
             display: block;
@@ -87,6 +88,9 @@
         .mobile-dropdown-menu {
             display: none;
         }
+
+        /* Utility fix */
+        .hidden-by-js { display: none; }
     </style>
 </head>
 <body class="bg-white">
@@ -94,7 +98,7 @@
     <!-- Header -->
     <header class="bg-white shadow-md sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="#home" class="text-5xl font-love text-charcoal-gray">Tadriels Events</a>
+            <a href="#home" class="text-5xl font-love" style="color:var(--charcoal-gray)">Tadriels Events</a>
             <div class="hidden lg:flex items-center space-x-8">
                 <a href="#home" class="nav-link active">Home</a>
                 <a href="#about" class="nav-link">About Us</a>
@@ -151,45 +155,47 @@
     <!-- Main Content -->
     <main>
         <!-- Home Section -->
-        <section id="home" class="page relative h-screen overflow-hidden text-orange">
-    <div class="absolute inset-0 w-full h-full overflow-hidden">
-        <div id="hero-slides" class="flex w-[300%] h-full transition-transform duration-1000">
-            <div class="h-full w-full flex-shrink-0 bg-cover bg-center"
-                 style="background-image:url('https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg');"></div>
-            <div class="h-full w-full flex-shrink-0 bg-cover bg-center"                
-                style="background-image:url('https://images.pexels.com/photos/265940/pexels-photo-265940.jpeg');"></div>
-            <div class="h-full w-full flex-shrink-0 bg-cover bg-center"
-                 style="background-image:url('https://images.pexels.com/photos/2306277/pexels-photo-2306277.jpeg');"></div>
-            <div class="h-full w-full flex-shrink-0 bg-cover bg-center"
-                 style="background-image:url('https://images.pexels.com/photos/2306281/pexels-photo-2306281.jpeg');"></div>
-        </div>
-    </div>
-    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-    <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
-        <h1 class="text-6xl md:text-8xl font-love mb-6 leading-tight">
-            Creating Unforgettable Moments
-        </h1>
-        <p class="text-lg md:text-xl max-w-3xl mb-8 font-serif">
-            From elegant weddings to whimsical kids' parties, we bring your vision to life.
-        </p>
-        <a href="#checkout" class="bg-gold text-charcoal-gray font-bold py-3 px-8 rounded-full hover:bg-yellow-300 transition duration-300 text-lg">
-            Book Your Event
-        </a>
-    </div>
-</section>
+        <section id="home" class="page relative h-screen overflow-hidden">
+            <div class="absolute inset-0 w-full h-full overflow-hidden">
+                <div id="hero-slides" class="flex w-[400%] h-full transition-transform duration-1000">
+                    <div class="h-full w-full flex-shrink-0 bg-cover bg-center"
+                         style="background-image:url('https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg');"></div>
+                    <div class="h-full w-full flex-shrink-0 bg-cover bg-center"
+                        style="background-image:url('https://images.pexels.com/photos/265940/pexels-photo-265940.jpeg');"></div>
+                    <div class="h-full w-full flex-shrink-0 bg-cover bg-center"
+                         style="background-image:url('https://images.pexels.com/photos/2306277/pexels-photo-2306277.jpeg');"></div>
+                    <div class="h-full w-full flex-shrink-0 bg-cover bg-center"
+                         style="background-image:url('https://images.pexels.com/photos/2306281/pexels-photo-2306281.jpeg');"></div>
+                </div>
+            </div>
+            <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+            <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
+                <h1 class="text-6xl md:text-8xl font-love mb-6 leading-tight text-white">
+                    Creating Unforgettable Moments
+                </h1>
+                <p class="text-lg md:text-xl max-w-3xl mb-8 font-serif text-white">
+                    From elegant weddings to whimsical kids' parties, we bring your vision to life.
+                </p>
+                <a href="#checkout" class="bg-gold text-charcoal-gray font-bold py-3 px-8 rounded-full hover:bg-yellow-300 transition duration-300 text-lg">
+                    Book Your Event
+                </a>
+            </div>
+        </section>
 
-<script>
-    const slidesContainer = document.getElementById('hero-slides');
-    const totalSlides = slidesContainer.children.length;
-    let currentSlide = 0;
-
-    function slideHero() {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
-    }
-
-    setInterval(slideHero, 4000); // slides every 4 seconds
-</script>
+        <script>
+            // Simple sliding background carousel for hero
+            (function() {
+                const slidesContainer = document.getElementById('hero-slides');
+                if (!slidesContainer) return;
+                const totalSlides = slidesContainer.children.length;
+                let currentSlide = 0;
+                function slideHero() {
+                    currentSlide = (currentSlide + 1) % totalSlides;
+                    slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+                }
+                setInterval(slideHero, 4000);
+            })();
+        </script>
 
         <!-- Dynamic Content Area for other pages -->
         <div id="page-content"></div>
@@ -215,10 +221,10 @@
                 <a href="#" class="text-2xl hover:text-gold transition-colors"><i class="fab fa-pinterest-p"></i></a>
             </div>
             <p>&copy; 2024 Tadriels Event Planner & Rentals. All Rights Reserved.</p>
-            <p class="text-sm text-gray-400 mt-2">Website by © Tadriels,  All Rights Reserverd</p>
+            <p class="text-sm text-gray-400 mt-2">Website by © Tadriels. All Rights Reserved</p>
         </div>
     </footer>
-   
+
     <!-- Cart Sidebar -->
     <div id="cart-sidebar" class="cart-sidebar fixed inset-0 bg-black bg-opacity-50 z-50 invisible opacity-0">
         <div id="cart-sidebar-content" class="cart-sidebar-content absolute top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col transform translate-x-full">
@@ -270,80 +276,81 @@
         const PUBLIC_KEY = '7jYqEhkLxexQnPO3z';
         const INQUIRY_TEMPLATE_ID = 'template_pzsdi9s';
 
-        // --- Helper function to create a rental item card ---
+        // --- Helper: rental card template ---
         function createRentalItem(name, imageUrl, dataItem, price) {
             return `
                 <div class="rental-item bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                    <img src="${imageUrl}" alt="${name}" class="w-full h-64 object-cover" />
+                    <img src="${imageUrl}" alt="${name}" class="w-full h-48 object-cover" />
                     <div class="p-6 text-center">
                         <h3 class="text-2xl font-serif mb-2">${name}</h3>
-                        <p class="text-xl text-gray-600 mb-4">$${price.toFixed(2)}</p>
+                        <p class="text-xl text-gray-600 mb-4">$${Number(price).toFixed(2)}</p>
                         <button class="add-to-cart-btn bg-soft-lavender text-white font-bold py-2 px-6 rounded-full" data-item="${dataItem}" data-price="${price}">Add to Cart</button>
                     </div>
                 </div>
             `;
         }
 
-        // --- Page Content Templates ---
+        // --- Page templates ---
         const pages = {
             about: `
                 <section id="about" class="page py-20 bg-blush-pink bg-opacity-20">
                     <div class="container mx-auto px-6 text-center">
                         <h2 class="text-4xl md:text-5xl font-serif text-charcoal-gray mb-6 fade-in-up">Our Story</h2>
-                        <p class="max-w-3xl mx-auto text-lg text-gray-600 mb-4 fade-in-up">Born from a love for exquisite decorations and a dream-chasing spirit, Tadriels is dedicated to making every celebration magical. Our name is a heartfelt tribute to the owner’s children, a daily reminder of the joy and wonder we aim to bring to your special events.</p>
+                        <p class="max-w-3xl mx-auto text-lg text-gray-600 mb-4 fade-in-up">Born from a love for exquisite decorations and a dream-chasing spirit, Tadriels is dedicated to making every event memorable. We provide premium rentals and full-service planning to bring your vision to life.</p>
                     </div>
                 </section>`,
+
             rentals: `
                 <section id="rentals" class="page py-20">
                     <div class="container mx-auto px-6">
                         <h2 class="text-4xl md:text-5xl font-serif text-center text-charcoal-gray mb-12 fade-in-up">Our Rentals</h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <a href="#rentals-bounce" class="rental-category-tile block rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 fade-in-up">
-                                <div class="h-64 bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/F8C8DC/333333?text=Bounce+Houses')"></div><div class="p-6 bg-white"><h3 class="text-2xl font-serif">Bounce Houses</h3></div>
+                            <a href="#rentals-bounce" class="block rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                                <div class="h-64 bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/F8C8DC/333333?text=Bounce+Houses')"></div>
+                                <div class="p-6 bg-white"><h3 class="text-xl font-serif">Bounce Houses</h3></div>
                             </a>
-                            <a href="#rentals-flower" class="rental-category-tile block rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 fade-in-up">
-                                <div class="h-64 bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/C7B7FF/333333?text=Flower+Walls')"></div><div class="p-6 bg-white"><h3 class="text-2xl font-serif">Flower Walls</h3></div>
+                            <a href="#rentals-flower" class="block rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                                <div class="h-64 bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/C7B7FF/333333?text=Flower+Walls')"></div>
+                                <div class="p-6 bg-white"><h3 class="text-xl font-serif">Flower Walls</h3></div>
                             </a>
-                            <a href="#rentals-balloon" class="rental-category-tile block rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 fade-in-up">
-                                <div class="h-64 bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/D4AF37/333333?text=Balloon+D%C3%A9cor')"></div><div class="p-6 bg-white"><h3 class="text-2xl font-serif">Balloon Décor</h3></div>
+                            <a href="#rentals-balloon" class="block rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                                <div class="h-64 bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/D4AF37/333333?text=Balloon+Decor')"></div>
+                                <div class="p-6 bg-white"><h3 class="text-xl font-serif">Balloon Décor</h3></div>
                             </a>
-                            <a href="#rentals-kids" class="rental-category-tile block rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 fade-in-up">
-                                <div class="h-64 bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/F8C8DC/333333?text=Kids+Parties')"></div><div class="p-6 bg-white"><h3 class="text-2xl font-serif">Kids’ Party Setups</h3></div>
+                            <a href="#rentals-kids" class="block rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                                <div class="h-64 bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/F8C8DC/333333?text=Kids+Parties')"></div>
+                                <div class="p-6 bg-white"><h3 class="text-xl font-serif">Kids’ Party Setups</h3></div>
                             </a>
-                            <a href="#rentals-wedding" class="rental-category-tile block rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 fade-in-up">
-                                <div class="h-64 bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/C7B7FF/333333?text=Wedding+D%C3%A9cor')"></div><div class="p-6 bg-white"><h3 class="text-2xl font-serif">Wedding Décor</h3></div>
+                            <a href="#rentals-wedding" class="block rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                                <div class="h-64 bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/C7B7FF/333333?text=Wedding+Decor')"></div>
+                                <div class="p-6 bg-white"><h3 class="text-xl font-serif">Wedding Décor</h3></div>
                             </a>
-                            <a href="#rentals-misc" class="rental-category-tile block rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 fade-in-up">
-                                <div class="h-64 bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/D4AF37/333333?text=Misc.+Rentals')"></div><div class="p-6 bg-white"><h3 class="text-2xl font-serif">Misc. Rentals</h3></div>
+                            <a href="#rentals-misc" class="block rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                                <div class="h-64 bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/D4AF37/333333?text=Misc+Rentals')"></div>
+                                <div class="p-6 bg-white"><h3 class="text-xl font-serif">Misc. Rentals</h3></div>
                             </a>
                         </div>
                     </div>
                 </section>`,
+
             gallery: `
                 <section id="gallery" class="page py-20 bg-gray-50">
                     <div class="container mx-auto px-6">
                         <h2 class="text-4xl md:text-5xl font-serif text-center text-charcoal-gray mb-12 fade-in-up">Our Gallery</h2>
                         <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up"><img src="https://images.pexels.com/photos/2788492/pexels-photo-2788492.jpeg" alt="Bright and airy table setup with transparent chairs" class="gallery-img w-full h-full object-cover cursor-pointer transform hover:scale-105 transition-transform duration-300" /></div>
-                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up"><img src="https://images.pexels.com/photos/1045541/pexels-photo-1045541.jpeg" alt="Elegant dark table setup for an event" class="gallery-img w-full h-full object-cover cursor-pointer transform hover:scale-105 transition-transform duration-300" /></div>
-                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up"><img src="https://images.pexels.com/photos/2062883/pexels-photo-2062883.jpeg" alt="Outdoor event table with floral centerpiece" class="gallery-img w-full h-full object-cover cursor-pointer transform hover:scale-105 transition-transform duration-300" /></div>
-                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up"><img src="https://images.pexels.com/photos/33911554/pexels-photo-33911554.jpeg" alt="Dark, moody table setup with baby's breath centerpiece" class="gallery-img w-full h-full object-cover cursor-pointer transform hover:scale-105 transition-transform duration-300" /></div>
-                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up"><img src="https://images.pexels.com/photos/19024675/pexels-photo-19024675.jpeg" alt="Elegant table setup with pink and orange flowers" class="gallery-img w-full h-full object-cover cursor-pointer transform hover:scale-105 transition-transform duration-300" /></div>
-                            <!-- LOCAL IMAGES -->
-                            <div class="overflow-hidden rounded-lg shadow-lg">
-                                <img src="360-booth.jpg" class="gallery-img w-full h-64 object-cover cursor-pointer" alt="360 Booth" />
-                            </div>
-
-                            <div class="overflow-hidden rounded-lg shadow-lg">
-                                <img src="dry-ice-clouds-1.jpg" class="gallery-img w-full h-64 object-cover cursor-pointer" alt="Dry Ice Clouds" />
-                            </div>
-
-                            <div class="overflow-hidden rounded-lg shadow-lg">
-                                <img src="cold-sparkler.jpeg" class="gallery-img w-full h-64 object-cover cursor-pointer" alt="Cold Sparkler" />
-                            </div>
+                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up"><img src="https://images.pexels.com/photos/2788492/pexels-photo-2788492.jpeg" alt="Bright and airy table setup" class="w-full h-64 object-cover gallery-img cursor-pointer"></div>
+                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up"><img src="https://images.pexels.com/photos/1045541/pexels-photo-1045541.jpeg" alt="Elegant dark table setup" class="w-full h-64 object-cover gallery-img cursor-pointer"></div>
+                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up"><img src="https://images.pexels.com/photos/2062883/pexels-photo-2062883.jpeg" alt="Outdoor event table" class="w-full h-64 object-cover gallery-img cursor-pointer"></div>
+                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up"><img src="https://images.pexels.com/photos/33911554/pexels-photo-33911554.jpeg" alt="Moody table setup" class="w-full h-64 object-cover gallery-img cursor-pointer"></div>
+                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up"><img src="https://images.pexels.com/photos/19024675/pexels-photo-19024675.jpeg" alt="Elegant table setup" class="w-full h-64 object-cover gallery-img cursor-pointer"></div>
+                            <!-- Local images (kept as-is per your instruction) -->
+                            <div class="overflow-hidden rounded-lg shadow-lg"><img src="360-booth.jpg" class="gallery-img w-full h-64 object-cover cursor-pointer" alt="360 Booth" /></div>
+                            <div class="overflow-hidden rounded-lg shadow-lg"><img src="dry-ice-clouds-1.jpg" class="gallery-img w-full h-64 object-cover cursor-pointer" alt="Dry Ice Clouds" /></div>
+                            <div class="overflow-hidden rounded-lg shadow-lg"><img src="cold-sparkler.jpeg" class="gallery-img w-full h-64 object-cover cursor-pointer" alt="Cold Sparkler" /></div>
                         </div>
                     </div>
                 </section>`,
+
             contact: `
                 <section id="contact" class="page py-20 bg-gray-50">
                     <div class="container mx-auto px-6 text-center">
@@ -363,6 +370,7 @@
                         </div>
                     </div>
                 </section>`,
+
             checkout: `
                 <section id="checkout" class="page py-20 bg-gray-50">
                     <div class="container mx-auto px-6">
@@ -375,20 +383,20 @@
                                         <!-- Items will be injected here -->
                                     </div>
                                     <h3 class="text-2xl font-serif border-b pb-4">Event Details</h3>
-                                    <div><label for="celebrant_name" class="block mb-1">Celebrant Name*</label><input type="text" name="celebrant_name" class="w-full p-3 rounded-md border border-gray-300" required></div>
+                                    <div><label for="celebrant_name" class="block mb-1">Celebrant Name*</label><input type="text" name="celebrant_name" class="w-full p-3 rounded-md border border-gray-300" required /></div>
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        <div><label for="event_date" class="block mb-1">Event Date*</label><input type="date" name="event_date" class="w-full p-3 rounded-md border border-gray-300" required></div>
-                                        <div><label for="event_time" class="block mb-1">Event Time*</label><input type="time" name="event_time" class="w-full p-3 rounded-md border border-gray-300" required></div>
+                                        <div><label for="event_date" class="block mb-1">Event Date*</label><input type="date" name="event_date" class="w-full p-3 rounded-md border border-gray-300" required /></div>
+                                        <div><label for="event_time" class="block mb-1">Event Time*</label><input type="time" name="event_time" class="w-full p-3 rounded-md border border-gray-300" required /></div>
                                     </div>
                                     <div><label for="message" class="block mb-1">Additional Details</label><textarea name="message" rows="4" class="w-full p-3 rounded-md border border-gray-300"></textarea></div>
                                    
                                     <h3 class="text-2xl font-serif border-b pb-4 pt-4">Your Contact Information</h3>
-                                    <div><label for="customer_name" class="block mb-1">Customer Name*</label><input type="text" name="customer_name" class="w-full p-3 rounded-md border border-gray-300" required></div>
+                                    <div><label for="customer_name" class="block mb-1">Customer Name*</label><input type="text" name="customer_name" class="w-full p-3 rounded-md border border-gray-300" required /></div>
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                       <div><label for="customer_email" class="block mb-1">Email*</label><input type="email" name="customer_email" class="w-full p-3 rounded-md border border-gray-300" required></div>
-                                       <div><label for="customer_phone" class="block mb-1">Phone*</label><input type="tel" name="customer_phone" class="w-full p-3 rounded-md border border-gray-300" required></div>
+                                       <div><label for="customer_email" class="block mb-1">Email*</label><input type="email" name="customer_email" class="w-full p-3 rounded-md border border-gray-300" required /></div>
+                                       <div><label for="customer_phone" class="block mb-1">Phone*</label><input type="tel" name="customer_phone" class="w-full p-3 rounded-md border border-gray-300" required /></div>
                                     </div>
-                                    <button type="submit" id="submit-inquiry-btn" class="w-full bg-gold text-charcoal-gray font-bold py-3 px-6 rounded-full hover:bg-yellow-300 transition duration-300">Submit Inquiry</button>
+                                    <button type="submit" id="submit-inquiry-btn" class="w-full bg-gold text-charcoal-gray font-bold py-3 px-6 rounded-full hover:bg-yellow-300 transition duration-300">Send Inquiry</button>
                                 </form>
                             </div>
                         </div>
@@ -398,42 +406,108 @@
                             <a href="#home" class="text-gold hover:underline">Return to Home</a>
                         </div>
                     </div>
-                </section>
-              
-    });
-</script> `
+                </section>`
         };
 
+        // --- Rental category pages (using createRentalItem) ---
+        // Restored additional products (produits) you had previously — expanded lists below.
         const rentalPages = {
-            bounce: `<section id="rentals-bounce" class="page py-20"><div class="container mx-auto px-6"><h2 class="text-4xl font-serif text-center mb-12">Bounce Houses</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">${createRentalItem('Rainbow Castle','https://placehold.co/600x400/F8C8DC/333333?text=Rainbow+Castle','Rainbow Castle', 250)}${createRentalItem('Princess Pink Castle','https://placehold.co/600x400/F8C8DC/333333?text=Princess+Pink','Princess Pink Castle', 275)}${createRentalItem('Tropical Paradise','https://placehold.co/600x400/F8C8DC/333333?text=Tropical+Paradise','Tropical Paradise', 300)}${createRentalItem('Sports Arena','https://placehold.co/600x400/F8C8DC/333333?text=Sports+Arena','Sports Arena', 280)}${createRentalItem('Jungle Safari','https://placehold.co/600x400/F8C8DC/333333?text=Jungle+Safari','Jungle Safari', 280)}${createRentalItem('Deluxe Obstacle Course','https://placehold.co/600x400/F8C8DC/333333?text=Obstacle+Course','Deluxe Obstacle Course', 450)}${createRentalItem('Toddler Playland','https://placehold.co/600x400/F8C8DC/333333?text=Toddler+Playland','Toddler Playland', 200)}</div></div></section>`,
-            flower: `<section id="rentals-flower" class="page py-20"><div class="container mx-auto px-6"><h2 class="text-4xl font-serif text-center mb-12">Flower Walls</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">${createRentalItem('Blush Pink Rose Wall','https://placehold.co/600x400/C7B7FF/333333?text=Blush+Pink+Rose','Blush Pink Rose Wall', 350)}${createRentalItem('White & Cream Hydrangea','https://placehold.co/600x400/C7B7FF/333333?text=Hydrangea+Wall','White & Cream Hydrangea', 375)}${createRentalItem('Gold & White Luxury','https://placehold.co/600x400/C7B7FF/333333?text=Luxury+Wall','Gold & White Luxury', 450)}${createRentalItem('Red Romance Rose','https://placehold.co/600x400/C7B7FF/333333?text=Red+Rose+Wall','Red Romance Rose', 350)}${createRentalItem('Greenery & Floral Mix','https://placehold.co/600x400/C7B7FF/333333?text=Greenery+Mix','Greenery & Floral Mix', 300)}${createRentalItem('Pastel Ombre Wall','https://placehold.co/600x400/C7B7FF/333333?text=Pastel+Ombre','Pastel Ombre Wall', 400)}${createRentalItem('Lavender Dreams','https://placehold.co/600x400/C7B7FF/333333?text=Lavender+Dreams','Lavender Dreams Wall', 375)}</div></div></section>`,
-            balloon: `<section id="rentals-balloon" class="page py-20"><div class="container mx-auto px-6"><h2 class="text-4xl font-serif text-center mb-12">Balloon Décor</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">${createRentalItem('Gold & White Arch','https://placehold.co/600x400/D4AF37/333333?text=Gold+Arch','Gold & White Arch', 400)}${createRentalItem('Pastel Rainbow Garland','https://placehold.co/600x400/D4AF37/333333?text=Rainbow+Garland','Pastel Rainbow Garland', 350)}${createRentalItem('Pink & Gold Hoop','https://placehold.co/600x400/D4AF37/333333?text=Pink+Hoop','Pink & Gold Hoop', 300)}${createRentalItem('Organic Green & White','https://placehold.co/600x400/D4AF37/333333?text=Organic+Arch','Organic Green & White', 380)}${createRentalItem('Blue & Silver Garland','https://placehold.co/600x400/D4AF37/333333?text=Blue+Garland','Blue & Silver Garland', 350)}${createRentalItem('Themed Character Display','https://placehold.co/600x400/D4AF37/333333?text=Character+Display','Themed Character Display', 250)}${createRentalItem('Giant Number Display','https://placehold.co/600x400/D4AF37/333333?text=Giant+Numbers','Giant Number Display', 150)}</div></div></section>`,
-            kids: `<section id="rentals-kids" class="page py-20"><div class="container mx-auto px-6"><h2 class="text-4xl font-serif text-center mb-12">Kids’ Party Setups</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">${createRentalItem('Princess Tea Party','https://placehold.co/600x400/F8C8DC/333333?text=Tea+Party','Princess Tea Party', 450)}${createRentalItem('Superhero Party','https://placehold.co/600x400/F8C8DC/333333?text=Superhero+Party','Superhero Party', 450)}${createRentalItem('Jungle Safari Setup','https://placehold.co/600x400/F8C8DC/333333?text=Jungle+Safari','Jungle Safari Setup', 475)}${createRentalItem('Unicorn Party','https://placehold.co/600x400/F8C8DC/333333?text=Unicorn+Party','Unicorn Party', 475)}${createRentalItem('Pirate Adventure','https://placehold.co/600x400/F8C8DC/333333?text=Pirate+Adventure','Pirate Adventure', 425)}${createRentalItem('Candyland Party','https://placehold.co/600x400/F8C8DC/333333?text=Candyland','Candyland Party', 500)}${createRentalItem('Dino Dig Party','https://placehold.co/600x400/F8C8DC/333333?text=Dino+Dig','Dino Dig Party', 425)}</div></div></section>`,
-            wedding: `<section id="rentals-wedding" class="page py-20"><div class="container mx-auto px-6"><h2 class="text-4xl font-serif text-center mb-12">Wedding Décor & Setups</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">${createRentalItem('Elegant Gold Arch','https://placehold.co/600x400/C7B7FF/333333?text=Gold+Arch','Elegant Gold Arch', 300)}${createRentalItem('White Draped Arch','https://placehold.co/600x400/C7B7FF/333333?text=Draped+Arch','White Draped Arch', 250)}${createRentalItem('Gold & Crystal Centerpieces','https://placehold.co/600x400/C7B7FF/333333?text=Centerpieces','Gold & Crystal Centerpieces', 50)}${createRentalItem('Luxury Throne Chairs','https://placehold.co/600x400/C7B7FF/333333?text=Throne+Chairs','Luxury Throne Chairs', 200)}${createRentalItem('Sequin Table Linens','https://placehold.co/600x400/C7B7FF/333333?text=Sequin+Linens','Sequin Table Linens', 40)}${createRentalItem('Vintage Candle Holder Set','https://placehold.co/600x400/C7B7FF/333333?text=Candle+Holders','Vintage Candle Holder Set', 30)}${createRentalItem('Premium Aisle Runner','https://placehold.co/600x400/C7B7FF/333333?text=Aisle+Runner','Premium Aisle Runner', 100)}</div></div></section>`,
-            misc: `<section id="rentals-misc" class="page py-20"><div class="container mx-auto px-6"><h2 class="text-4xl font-serif text-center mb-12">Miscellaneous Event Rentals</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">${createRentalItem(
-  'Cold Sparklers',
-  'cold-sparkler.jpeg',
-  'Cold Sparklers',
-  150)}${createRentalItem(
-  'Dry Ice Fog Machine (Dancing on Clouds)',
-  'dry-ice-clouds-1.jpg',
-  'Dry Ice Fog Machine',
-  400)}${createRentalItem(
-  '360° Video Booth Machine',
-  '360-booth.jpg',
-  '360° Video Booth Machine',
-  500)}${createRentalItem('Round Banquet Tables','https://placehold.co/600x400/D4AF37/333333?text=Banquet+Tables','Round Banquet Tables', 15)}${createRentalItem('Gold Chiavari Chairs','https://placehold.co/600x400/D4AF37/333333?text=Chiavari+Chairs','Gold Chiavari Chairs', 9)}${createRentalItem('White Folding Chairs','https://placehold.co/600x400/D4AF37/333333?text=Folding+Chairs','White Folding Chairs', 5)}${createRentalItem('LED Marquee LOVE Letters','https://placehold.co/600x400/D4AF37/333333?text=LOVE+Letters','LED Marquee LOVE Letters', 200)}${createRentalItem('Portable Dance Floor','https://placehold.co/600x400/D4AF37/333333?text=Dance+Floor','Portable Dance Floor', 250)}${createRentalItem('Outdoor Tent Canopy','https://placehold.co/600x400/D4AF37/333333?text=Tent+Canopy','Outdoor Tent Canopy', 300)}${createRentalItem('Stage Platform Rental','https://placehold.co/600x400/D4AF37/333333?text=Stage+Platform','Stage Platform Rental', 150)}</div></div></section>`,
+            bounce: `
+                <section id="rentals-bounce" class="page py-20">
+                    <div class="container mx-auto px-6">
+                        <h2 class="text-4xl font-serif text-center mb-12">Bounce Houses</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            ${createRentalItem('Standard Bounce House', 'https://placehold.co/600x400/F8C8DC/333333?text=Standard+Bounce', 'Standard Bounce House', 120)}
+                            ${createRentalItem('Large Combo Bounce', 'https://placehold.co/600x400/F8C8DC/333333?text=Combo+Bounce', 'Large Combo Bounce', 200)}
+                            ${createRentalItem('Inflatable Slide', 'https://placehold.co/600x400/F8C8DC/333333?text=Inflatable+Slide', 'Inflatable Slide', 180)}
+                            ${createRentalItem('Obstacle Course', 'https://placehold.co/600x400/F8C8DC/333333?text=Obstacle+Course', 'Obstacle Course', 350)}
+                            ${createRentalItem('Toddler Bounce (Soft Play)', 'https://placehold.co/600x400/F8C8DC/333333?text=Toddler+Bounce', 'Toddler Bounce', 80)}
+                        </div>
+                    </div>
+                </section>`,
+
+            flower: `
+                <section id="rentals-flower" class="page py-20">
+                    <div class="container mx-auto px-6">
+                        <h2 class="text-4xl font-serif text-center mb-12">Flower Walls</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            ${createRentalItem('5ft Flower Wall', 'https://placehold.co/600x400/C7B7FF/333333?text=5ft+Flower+Wall', '5ft Flower Wall', 150)}
+                            ${createRentalItem('8ft Flower Backdrop', 'https://placehold.co/600x400/C7B7FF/333333?text=8ft+Backdrop', '8ft Flower Backdrop', 250)}
+                            ${createRentalItem('Greenery Wall', 'https://placehold.co/600x400/C7B7FF/333333?text=Greenery+Wall', 'Greenery Wall', 180)}
+                            ${createRentalItem('Custom Monogram Flower Wall', 'https://placehold.co/600x400/C7B7FF/333333?text=Monogram+Wall', 'Custom Monogram Flower Wall', 320)}
+                        </div>
+                    </div>
+                </section>`,
+
+            balloon: `
+                <section id="rentals-balloon" class="page py-20">
+                    <div class="container mx-auto px-6">
+                        <h2 class="text-4xl font-serif text-center mb-12">Balloon Décor</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            ${createRentalItem('Balloon Arch', 'https://placehold.co/600x400/D4AF37/333333?text=Balloon+Arch', 'Balloon Arch', 120)}
+                            ${createRentalItem('Balloon Columns (2)', 'https://placehold.co/600x400/D4AF37/333333?text=Balloon+Columns', 'Balloon Columns', 90)}
+                            ${createRentalItem('Balloon Garland (8ft)', 'https://placehold.co/600x400/D4AF37/333333?text=Balloon+Garland', 'Balloon Garland', 75)}
+                            ${createRentalItem('Custom Theme Balloon Sculptures', 'https://placehold.co/600x400/D4AF37/333333?text=Balloon+Sculpture', 'Custom Balloon Sculpture', 180)}
+                        </div>
+                    </div>
+                </section>`,
+
+            kids: `
+                <section id="rentals-kids" class="page py-20">
+                    <div class="container mx-auto px-6">
+                        <h2 class="text-4xl font-serif text-center mb-12">Kids’ Party Setups</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            ${createRentalItem('Kids Table & Chairs Set', 'https://placehold.co/600x400/F8C8DC/333333?text=Kids+Tables', 'Kids Table & Chairs Set', 40)}
+                            ${createRentalItem('Character Backdrop', 'https://placehold.co/600x400/F8C8DC/333333?text=Character+Backdrop', 'Character Backdrop', 75)}
+                            ${createRentalItem('Face Painting Station (Table & Chair)', 'https://placehold.co/600x400/F8C8DC/333333?text=Face+Painting', 'Face Painting Station', 60)}
+                            ${createRentalItem('Piñata + Candy Setup', 'https://placehold.co/600x400/F8C8DC/333333?text=Pinata', 'Piñata Setup', 45)}
+                        </div>
+                    </div>
+                </section>`,
+
+            wedding: `
+                <section id="rentals-wedding" class="page py-20">
+                    <div class="container mx-auto px-6">
+                        <h2 class="text-4xl font-serif text-center mb-12">Wedding Décor & Setups</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            ${createRentalItem('Gold Chiavari Chairs (per chair)', 'https://placehold.co/600x400/C7B7FF/333333?text=Chiavari+Chair', 'Gold Chiavari Chair', 10)}
+                            ${createRentalItem('Round Banquet Table (per table)', 'https://placehold.co/600x400/C7B7FF/333333?text=Banquet+Table', 'Round Banquet Table', 15)}
+                            ${createRentalItem('Aisle Runner & Arch', 'https://placehold.co/600x400/C7B7FF/333333?text=Aisle+Arch', 'Aisle Runner & Arch', 250)}
+                            ${createRentalItem('Centerpiece Package (per table)', 'https://placehold.co/600x400/C7B7FF/333333?text=Centerpiece', 'Centerpiece Package', 35)}
+                            ${createRentalItem('Table Linens (per table)', 'https://placehold.co/600x400/C7B7FF/333333?text=Table+Linens', 'Table Linens', 12)}
+                            ${createRentalItem('Uplighting Package (per room)', 'https://placehold.co/600x400/C7B7FF/333333?text=Uplighting', 'Uplighting Package', 250)}
+                            ${createRentalItem('LED Dance Floor (per event)', 'https://placehold.co/600x400/C7B7FF/333333?text=LED+Dance+Floor', 'LED Dance Floor', 600)}
+                        </div>
+                    </div>
+                </section>`,
+
+            misc: `
+                <section id="rentals-misc" class="page py-20">
+                    <div class="container mx-auto px-6">
+                        <h2 class="text-4xl font-serif text-center mb-12">Miscellaneous Event Rentals</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            ${createRentalItem('360° Video Booth', '360-booth.jpg', '360° Video Booth', 500)}
+                            ${createRentalItem('Dry Ice Fog Machine (Dancing on Clouds)', 'dry-ice-clouds-1.jpg', 'Dry Ice Fog Machine', 400)}
+                            ${createRentalItem('Cold Sparklers (per unit)', 'cold-sparkler.jpeg', 'Cold Sparklers', 150)}
+                            ${createRentalItem('Projector & Screen', 'https://placehold.co/600x400/D4AF37/333333?text=Projector+%26+Screen', 'Projector & Screen', 125)}
+                            ${createRentalItem('Sound System (PA)', 'https://placehold.co/600x400/D4AF37/333333?text=Sound+System', 'Sound System', 220)}
+                            ${createRentalItem('Photo Booth Backdrop', 'https://placehold.co/600x400/D4AF37/333333?text=Photo+Backdrop', 'Photo Booth Backdrop', 90)}
+                            ${createRentalItem('Dessert Table Setup', 'https://placehold.co/600x400/D4AF37/333333?text=Dessert+Table', 'Dessert Table Setup', 150)}
+                            ${createRentalItem('LED Uplights (single)', 'https://placehold.co/600x400/D4AF37/333333?text=LED+Uplight', 'LED Uplight', 25)}
+                        </div>
+                    </div>
+                </section>`
         };
 
         // --- Main App Logic ---
         document.addEventListener('DOMContentLoaded', function() {
-            // --- Element Selectors ---
+            // Element selectors
             const pageContent = document.getElementById('page-content');
             const homePage = document.getElementById('home');
             const navLinks = document.querySelectorAll('.nav-link, #mobile-menu a');
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
-            const mobileDropdowns = document.querySelectorAll('.mobile-dropdown > button');
+            const mobileDropdownButtons = document.querySelectorAll('.mobile-dropdown > button');
             const cartIcon = document.getElementById('cart-icon');
             const mobileCartIcon = document.getElementById('mobile-cart-icon');
             const cartSidebar = document.getElementById('cart-sidebar');
@@ -452,17 +526,15 @@
             const lightboxImg = document.getElementById('lightbox-img');
             const closeLightboxBtn = document.getElementById('close-lightbox-btn');
 
-            // --- App State ---
+            // App state
             let cart = JSON.parse(localStorage.getItem('tadrielsCart')) || [];
             let inquiryData = {};
 
-            // --- Cart Functions ---
+            // Utility: save/load
             const saveCart = () => localStorage.setItem('tadrielsCart', JSON.stringify(cart));
-           
-            const calculateSubtotal = () => {
-                return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-            };
+            const calculateSubtotal = () => cart.reduce((total, item) => total + (item.price * item.quantity), 0);
 
+            // Update cart count UI
             const updateCartCount = () => {
                 const count = cart.reduce((sum, item) => sum + item.quantity, 0);
                 const display = count > 0 ? 'flex' : 'none';
@@ -472,20 +544,24 @@
                 mobileCartCount.textContent = count;
             };
 
+            // Toast
             const showToast = (message) => {
                 toast.textContent = message;
                 toast.classList.remove('opacity-0');
+                toast.style.opacity = '1';
                 setTimeout(() => {
-                    toast.classList.add('opacity-0');
+                    toast.style.opacity = '0';
                 }, 2000);
             };
 
+            // Cart operations
             const addToCart = (itemName, itemPrice) => {
+                itemPrice = Number(itemPrice);
                 const existingItem = cart.find(item => item.name === itemName);
                 if (existingItem) {
                     existingItem.quantity++;
                 } else {
-                    cart.push({ name: itemName, quantity: 1, price: parseFloat(itemPrice) });
+                    cart.push({ name: itemName, quantity: 1, price: itemPrice });
                 }
                 saveCart();
                 updateCartCount();
@@ -499,22 +575,24 @@
                 updateCartCount();
                 renderCartItems();
             };
-           
+
             const updateQuantity = (itemName, newQuantity) => {
-                 const item = cart.find(item => item.name === itemName);
-                 if(item) {
-                     if(newQuantity > 0) {
-                         item.quantity = newQuantity;
-                     } else {
-                         removeFromCart(itemName);
-                     }
-                     saveCart();
-                     updateCartCount();
-                     renderCartItems();
-                 }
+                const item = cart.find(item => item.name === itemName);
+                if (item) {
+                    if (newQuantity > 0) {
+                        item.quantity = newQuantity;
+                    } else {
+                        cart = cart.filter(i => i.name !== itemName);
+                    }
+                    saveCart();
+                    updateCartCount();
+                    renderCartItems();
+                }
             };
 
+            // Render cart items into sidebar
             const renderCartItems = () => {
+                if (!cartItemsContainer) return;
                 if (cart.length === 0) {
                     cartItemsContainer.innerHTML = '<p class="text-gray-500">Your inquiry cart is empty.</p>';
                     subtotalDisplay.innerHTML = '';
@@ -522,38 +600,45 @@
                     checkoutBtn.disabled = true;
                     return;
                 }
-               
+
                 checkoutBtn.classList.remove('opacity-50', 'cursor-not-allowed');
                 checkoutBtn.disabled = false;
                 subtotalDisplay.innerHTML = `<strong>Subtotal:</strong> $${calculateSubtotal().toFixed(2)}`;
-                cartItemsContainer.innerHTML = cart.map(item => `
-                    <div class="flex justify-between items-center mb-4">
-                        <div>
-                            <p class="font-bold">${item.name}</p>
-                             <p class="text-sm text-gray-500">$${item.price.toFixed(2)} each</p>
-                            <div class="flex items-center mt-1">
-                                <label for="qty-${item.name.replace(/\s+/g, '-')}" class="mr-2 text-sm">Qty:</label>
-                                <input type="number" id="qty-${item.name.replace(/\s+/g, '-')}" value="${item.quantity}" min="1" class="w-16 p-1 border rounded-md quantity-input" data-item="${item.name}" />
+
+                cartItemsContainer.innerHTML = cart.map(item => {
+                    const safeId = item.name.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-_]/g, '');
+                    return `
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <p class="font-bold">${item.name}</p>
+                                <p class="text-sm text-gray-500">$${item.price.toFixed(2)} each</p>
+                                <div class="flex items-center mt-1">
+                                    <label for="qty-${safeId}" class="mr-2 text-sm">Qty:</label>
+                                    <input type="number" id="qty-${safeId}" value="${item.quantity}" min="1" class="w-16 p-1 border rounded-md quantity-input" data-item="${item.name}" />
+                                </div>
                             </div>
+                            <button class="remove-from-cart-btn text-red-500 hover:text-red-700" data-item="${item.name}">&times; Remove</button>
                         </div>
-                        <button class="remove-from-cart-btn text-red-500 hover:text-red-700" data-item="${item.name}">&times; Remove</button>
-                    </div>
-                `).join('');
+                    `;
+                }).join('');
             };
 
             const openCart = () => {
                 renderCartItems();
                 cartSidebar.classList.remove('invisible', 'opacity-0');
-                cartSidebar.querySelector('#cart-sidebar-content').classList.remove('translate-x-full');
+                const content = document.getElementById('cart-sidebar-content');
+                if (content) content.classList.remove('translate-x-full');
             };
 
             const closeCart = () => {
-                cartSidebar.querySelector('#cart-sidebar-content').classList.add('translate-x-full');
+                const content = document.getElementById('cart-sidebar-content');
+                if (content) content.classList.add('translate-x-full');
                 setTimeout(() => {
                     cartSidebar.classList.add('invisible', 'opacity-0');
                 }, 300);
             };
-           
+
+            // Confirmation modal
             const openConfirmationModal = () => {
                 confirmationList.innerHTML = cart.map(item => `<p><strong>${item.quantity}x</strong> ${item.name} (@ $${item.price.toFixed(2)} each)</p>`).join('');
                 confirmationList.innerHTML += `<hr class="my-2"><p class="font-bold text-right">Subtotal: $${calculateSubtotal().toFixed(2)}</p>`;
@@ -568,105 +653,143 @@
                 }, 300);
             };
 
+            // Lightbox
             const openLightbox = (src) => {
                 lightboxImg.src = src;
                 lightbox.classList.remove('invisible', 'opacity-0');
             };
-
             const closeLightbox = () => {
                 lightbox.classList.add('invisible', 'opacity-0');
+                lightboxImg.src = '';
             };
 
-            // --- Page Router & Logic ---
+            // Page router
             const loadPage = (hash) => {
                 document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
                 pageContent.innerHTML = '';
-                const pageKey = hash.substring(1).split('-')[0] || 'home';
-                const rentalCategory = hash.includes('rentals-') ? hash.substring(9) : null;
+                const pageKey = (hash && hash.length > 1) ? hash.substring(1).split('-')[0] : 'home';
+                const rentalCategory = hash && hash.includes('rentals-') ? hash.substring(9) : null;
 
                 if (pageKey === 'checkout') {
-                     pageContent.innerHTML = pages.checkout;
-                     const servicesBookedList = document.getElementById('services-booked-list');
-                     if(servicesBookedList) {
-                        servicesBookedList.innerHTML += cart.map(item => `<p class="text-gray-700 mt-2"><strong>${item.quantity}x</strong> ${item.name} - $${(item.price * item.quantity).toFixed(2)}</p>`).join('');
-                        servicesBookedList.innerHTML += `<hr class="my-2"><p class="font-bold text-right text-xl">Subtotal: $${calculateSubtotal().toFixed(2)}</p>`;
-                     }
+                    pageContent.innerHTML = pages.checkout;
+                    // After injecting checkout, populate services list
+                    setTimeout(() => {
+                        const servicesBookedList = document.getElementById('services-booked-list');
+                        if (servicesBookedList) {
+                            if (cart.length === 0) {
+                                servicesBookedList.innerHTML += '<p class="text-gray-500">No services selected yet.</p>';
+                            } else {
+                                servicesBookedList.innerHTML += cart.map(item => `<p class="text-gray-700 mt-2"><strong>${item.quantity}x</strong> ${item.name} - $${(item.price * item.quantity).toFixed(2)}</p>`).join('');
+                                servicesBookedList.innerHTML += `<hr class="my-2"><p class="font-bold text-right text-xl">Subtotal: $${calculateSubtotal().toFixed(2)}</p>`;
+                            }
+                        }
+                        setupPageEventListeners(); // ensure listeners (form)
+                    }, 10);
                 } else if (rentalCategory && rentalPages[rentalCategory]) {
                     pageContent.innerHTML = rentalPages[rentalCategory];
+                    setupPageEventListeners();
                 } else if (pages[pageKey]) {
                     pageContent.innerHTML = pages[pageKey];
+                    setupPageEventListeners();
                 } else {
                     homePage.style.display = 'block';
                 }
-               
-                if (pageKey !== 'home') homePage.style.display = 'none';
 
+                if (pageKey !== 'home') homePage.style.display = 'none';
                 window.scrollTo(0, 0);
                 updateActiveLink(hash);
-                setupPageEventListeners();
                 animateOnScroll();
             };
 
             const updateActiveLink = (hash) => {
                 let currentHash = hash || '#home';
-                navLinks.forEach(link => {
+                document.querySelectorAll('.nav-link').forEach(link => {
                     link.classList.remove('active');
+                });
+                // also highlight mobile menu items
+                document.querySelectorAll('#mobile-menu a').forEach(a => a.classList.remove('active'));
+                document.querySelectorAll('.nav-link, #mobile-menu a').forEach(link => {
                     if (link.getAttribute('href') === currentHash) {
                         link.classList.add('active');
                     }
                 });
             };
 
+            // Attach event listeners for dynamic elements (delegation where helpful)
             const setupPageEventListeners = () => {
-                document.querySelectorAll('.add-to-cart-btn').forEach(btn => btn.addEventListener('click', (e) => addToCart(e.target.dataset.item, e.target.dataset.price)));
-                cartItemsContainer.addEventListener('click', (e) => {
-                    if (e.target.classList.contains('remove-from-cart-btn')) {
-                        const itemName = e.target.dataset.item;
-                        removeFromCart(itemName);
+                // Attach add-to-cart buttons
+                document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+                    if (!btn.dataset.bound) {
+                        btn.addEventListener('click', (e) => {
+                            const target = e.currentTarget;
+                            addToCart(target.dataset.item, target.dataset.price);
+                        });
+                        btn.dataset.bound = 'true';
                     }
                 });
 
-                document.querySelectorAll('.quantity-input').forEach(input => input.addEventListener('change', (e) => updateQuantity(e.target.dataset.item, parseInt(e.target.value))));
-                document.querySelectorAll('.gallery-img').forEach(img => img.addEventListener('click', (e) => openLightbox(e.target.src)));
-               
+                // Quantity inputs in cart sidebar are dynamic; we use delegation on cartItemsContainer
+                // (delegation already set outside to handle clicks/changes)
+
+                // Gallery images -> lightbox
+                document.querySelectorAll('.gallery-img').forEach(img => {
+                    if (!img.dataset.bound) {
+                        img.addEventListener('click', (e) => openLightbox(e.currentTarget.src));
+                        img.dataset.bound = 'true';
+                    }
+                });
+
+                // Form
                 const inquiryForm = document.getElementById('inquiry-form');
-                if (inquiryForm) inquiryForm.addEventListener('submit', handleInquiryForm);
+                if (inquiryForm && !inquiryForm.dataset.bound) {
+                    inquiryForm.addEventListener('submit', handleInquiryForm);
+                    inquiryForm.dataset.bound = 'true';
+                }
             };
 
-            // --- Event Handlers ---
+            // Form handler
             const handleInquiryForm = (event) => {
                 event.preventDefault();
                 const form = event.target;
                 inquiryData = {
-                    celebrant_name: form.celebrant_name.value,
-                    event_date: form.event_date.value,
-                    event_time: form.event_time.value,
-                    message: form.message.value,
-                    customer_name: form.customer_name.value,
-                    customer_email: form.customer_email.value,
-                    customer_phone: form.customer_phone.value,
+                    celebrant_name: form.celebrant_name.value || '',
+                    event_date: form.event_date.value || '',
+                    event_time: form.event_time.value || '',
+                    message: form.message.value || '',
+                    customer_name: form.customer_name.value || '',
+                    customer_email: form.customer_email.value || '',
+                    customer_phone: form.customer_phone.value || '',
                     cart_items: cart.map(item => `${item.quantity}x ${item.name} @ $${item.price.toFixed(2)} each`).join('\n'),
                     subtotal: calculateSubtotal().toFixed(2)
                 };
                 openConfirmationModal();
             };
 
+            // Send via emailjs
             const sendInquiryEmail = () => {
                 confirmYesBtn.disabled = true;
                 confirmYesBtn.textContent = 'Sending...';
-
+                if (typeof emailjs === 'undefined') {
+                    alert('EmailJS is not loaded. Cannot send email.');
+                    confirmYesBtn.disabled = false;
+                    confirmYesBtn.textContent = 'Yes, Send Inquiry';
+                    return;
+                }
                 emailjs.send(SERVICE_ID, INQUIRY_TEMPLATE_ID, inquiryData, PUBLIC_KEY)
                     .then(() => {
                         closeConfirmationModal();
-                        document.getElementById('inquiry-wrapper').classList.add('hidden');
-                        document.getElementById('success-message').classList.remove('hidden');
+                        const wrapper = document.getElementById('inquiry-wrapper');
+                        const successMsg = document.getElementById('success-message');
+                        if (wrapper) wrapper.classList.add('hidden');
+                        if (successMsg) successMsg.classList.remove('hidden');
                         cart = [];
                         saveCart();
                         updateCartCount();
+                        renderCartItems();
                     }, (error) => {
                         closeConfirmationModal();
                         alert('Failed to send inquiry. Please try again.');
-                        console.log('EmailJS Error:', error);
+                        console.error('EmailJS Error:', error);
                     })
                     .finally(() => {
                         confirmYesBtn.disabled = false;
@@ -674,17 +797,38 @@
                     });
             };
 
-            // --- Initial Setup ---
-            (function() { emailjs.init(PUBLIC_KEY); })();
+            // Delegated handlers for cart items' remove and quantity change
+            cartItemsContainer.addEventListener('click', (e) => {
+                if (e.target.classList && e.target.classList.contains('remove-from-cart-btn')) {
+                    const itemName = e.target.dataset.item;
+                    removeFromCart(itemName);
+                }
+            });
+
+            cartItemsContainer.addEventListener('change', (e) => {
+                const el = e.target;
+                if (el.classList && el.classList.contains('quantity-input')) {
+                    const itemName = el.dataset.item;
+                    const newQty = parseInt(el.value, 10) || 0;
+                    updateQuantity(itemName, newQty);
+                }
+            });
+
+            // Initial setup
+            (function() {
+                try { emailjs.init(PUBLIC_KEY); } catch (err) { /* ignore if emailjs fails to init */ }
+            })();
             loadPage(window.location.hash);
             updateCartCount();
 
-            // --- Event Listeners ---
+            // Global event listeners
             window.addEventListener('hashchange', () => loadPage(window.location.hash));
-            navLinks.forEach(link => {
+
+            // Nav links (prevent default and change hash manually)
+            document.querySelectorAll('.nav-link, #mobile-menu a').forEach(link => {
                 link.addEventListener('click', function(e) {
                     const href = this.getAttribute('href');
-                    if (href.startsWith('#')) {
+                    if (href && href.startsWith('#')) {
                         e.preventDefault();
                         window.location.hash = href;
                         if (!mobileMenu.classList.contains('hidden')) {
@@ -693,39 +837,47 @@
                     }
                 });
             });
-           
+
+            // Mobile menu toggle
             mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-            mobileDropdowns.forEach(button => button.addEventListener('click', (e) => {
+
+            // Mobile dropdown toggle
+            mobileDropdownButtons.forEach(button => button.addEventListener('click', (e) => {
                 e.stopPropagation();
                 button.parentElement.classList.toggle('open');
             }));
 
-            cartIcon.addEventListener('click', openCart);
-            mobileCartIcon.addEventListener('click', openCart);
-            closeCartBtn.addEventListener('click', closeCart);
-            cartSidebar.addEventListener('click', (e) => { if(e.target === cartSidebar) closeCart(); });
+            // Cart open/close
+            if (cartIcon) cartIcon.addEventListener('click', openCart);
+            if (mobileCartIcon) mobileCartIcon.addEventListener('click', openCart);
+            if (closeCartBtn) closeCartBtn.addEventListener('click', closeCart);
+            cartSidebar.addEventListener('click', (e) => { if (e.target === cartSidebar) closeCart(); });
+
+            // Checkout from sidebar
             checkoutBtn.addEventListener('click', () => {
                 if (cart.length > 0) {
                     closeCart();
                     window.location.hash = '#checkout';
                 }
             });
-           
+
+            // Confirmation modal controls
             confirmYesBtn.addEventListener('click', sendInquiryEmail);
             confirmNoBtn.addEventListener('click', closeConfirmationModal);
-            confirmationModal.addEventListener('click', (e) => { if(e.target === confirmationModal) closeConfirmationModal(); });
+            confirmationModal.addEventListener('click', (e) => { if (e.target === confirmationModal) closeConfirmationModal(); });
+
+            // Lightbox controls
             closeLightboxBtn.addEventListener('click', closeLightbox);
-            lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox(); });
+            lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
 
-
-            // Hero slider
+            // Hero slider (in case .hero-slide used elsewhere)
             const slides = document.querySelectorAll('.hero-slide');
-            if(slides.length > 0) {
-                let currentSlide = 0;
+            if (slides.length > 0) {
+                let hs = 0;
                 setInterval(() => {
-                    slides[currentSlide].classList.remove('active');
-                    currentSlide = (currentSlide + 1) % slides.length;
-                    slides[currentSlide].classList.add('active');
+                    slides[hs].classList.remove('active');
+                    hs = (hs + 1) % slides.length;
+                    slides[hs].classList.add('active');
                 }, 5000);
             }
 
