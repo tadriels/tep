@@ -398,7 +398,72 @@
                             <a href="#home" class="text-gold hover:underline">Return to Home</a>
                         </div>
                     </div>
-                </section>`
+                </section>
+                <!-- Collapsible Terms & Conditions with enforced scroll -->
+<div class="mb-4 border border-gray-300 rounded-md bg-gray-50">
+    <button type="button" 
+            id="toggle-terms-btn"
+            class="w-full text-left px-4 py-2 font-semibold text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring">
+        Terms & Conditions (Click to View)
+    </button>
+    <div id="terms-content" class="px-4 py-2 text-gray-700 text-sm hidden max-h-48 overflow-y-auto border-t border-gray-200">
+        <p>By submitting this inquiry, you agree to our policies regarding event bookings, cancellations, deposits, and the handling of personal information. All rentals are subject to availability. Deposits are non-refundable but may be applied to future bookings if canceled within an acceptable timeframe. The client is responsible for any damages to rental items during the event. Tadriels Events reserves the right to refuse service in cases of unsafe conditions or non-compliance with our policies.</p>
+        <p>Please read carefully before proceeding.</p>
+    </div>
+</div>
+
+<label class="flex items-start space-x-2 mb-6 opacity-50" id="terms-label">
+    <input type="checkbox" name="terms" id="terms-checkbox" class="mt-1" disabled />
+    <span class="text-gray-700 text-sm">
+        I have read and agree to the <a href="#terms" class="text-gold underline hover:text-yellow-300">Terms & Conditions</a>.
+    </span>
+</label>
+
+<script>
+    const toggleBtn = document.getElementById('toggle-terms-btn');
+    const termsContent = document.getElementById('terms-content');
+    const termsCheckbox = document.getElementById('terms-checkbox');
+    const submitButton = document.getElementById('submit-inquiry-btn');
+    const termsLabel = document.getElementById('terms-label');
+
+    // Toggle terms visibility
+    toggleBtn.addEventListener('click', () => {
+        termsContent.classList.toggle('hidden');
+    });
+
+    // Disable submit by default
+    submitButton.disabled = true;
+    submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+
+    // Checkbox disabled until scrolled to bottom
+    termsCheckbox.disabled = true;
+    termsLabel.classList.add('opacity-50');
+
+    termsContent.addEventListener('scroll', () => {
+        const scrollBottom = termsContent.scrollTop + termsContent.clientHeight;
+        const scrollHeight = termsContent.scrollHeight;
+
+        if (scrollBottom >= scrollHeight) {
+            termsCheckbox.disabled = false;
+            termsLabel.classList.remove('opacity-50');
+        }
+    });
+
+    // Enable submit only if checkbox is checked
+    termsCheckbox.addEventListener('change', () => {
+        const checked = termsCheckbox.checked;
+        submitButton.disabled = !checked;
+        submitButton.classList.toggle('opacity-50', !checked);
+        submitButton.classList.toggle('cursor-not-allowed', !checked);
+    });
+
+    // Optional: auto-expand terms if user clicks the checkbox
+    termsCheckbox.addEventListener('click', () => {
+        if (termsContent.classList.contains('hidden')) {
+            termsContent.classList.remove('hidden');
+        }
+    });
+</script> `
         };
 
         const rentalPages = {
