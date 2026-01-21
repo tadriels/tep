@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tadriels Events offers premium rentals including bounce houses, flower walls, balloon decor, and full-service event planning for weddings, kids' parties, and milestone celebrations in Ontario.">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Tadriels Events offers premium rentals including bounce houses, flower walls, balloon decor, and full-service event planning for weddings, kids' parties, and milestone celebrations in Ontario." />
     <title>Tadriels Events | Premium Event Decor & Planning</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Poppins:wght@400;500;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Poppins:wght@400;500;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" />
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         :root {
@@ -191,7 +191,6 @@
     setInterval(slideHero, 4000); // slides every 4 seconds
 </script>
 
-
         <!-- Dynamic Content Area for other pages -->
         <div id="page-content"></div>
 
@@ -285,7 +284,7 @@
             `;
         }
 
-        // --- Page Content Templates including updated checkout with rental dropdown ---
+        // --- Page Content Templates ---
         const pages = {
             about: `
                 <section id="about" class="page py-20 bg-blush-pink bg-opacity-20">
@@ -294,18 +293,86 @@
                         <p class="max-w-3xl mx-auto text-lg text-gray-600 mb-4 fade-in-up">Born from a love for exquisite decorations and a dream-chasing spirit, Tadriels is dedicated to making every celebration magical. Our name is a heartfelt tribute to the owner’s children, a daily reminder of the joy and wonder we aim to bring to your special events.</p>
                     </div>
                 </section>`,
-            rentals: `...`,  // The rest unchanged for brevity
-            gallery: `...`,
-            contact: `...`,
+            rentals: `
+                <section id="rentals" class="page py-20">
+                    <div class="container mx-auto px-6">
+                        <h2 class="text-4xl md:text-5xl font-serif text-center text-charcoal-gray mb-12 fade-in-up">Our Rentals</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <a href="#rentals-bounce" class="rental-category-tile block rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 fade-in-up">
+                                <div class="h-64 bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/F8C8DC/333333?text=Bounce+Houses')"></div><div class="p-6 bg-white"><h3 class="text-2xl font-serif">Bounce Houses</h3></div>
+                            </a>
+                            <a href="#rentals-flower" class="rental-category-tile block rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 fade-in-up">
+                                <div class="h-64 bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/C7B7FF/333333?text=Flower+Walls')"></div><div class="p-6 bg-white"><h3 class="text-2xl font-serif">Flower Walls</h3></div>
+                            </a>
+                            <a href="#rentals-balloon" class="rental-category-tile block rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 fade-in-up">
+                                <div class="h-64 bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/D4AF37/333333?text=Balloon+D%C3%A9cor')"></div><div class="p-6 bg-white"><h3 class="text-2xl font-serif">Balloon Décor</h3></div>
+                            </a>
+                            <a href="#rentals-kids" class="rental-category-tile block rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 fade-in-up">
+                                <div class="h-64 bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/F8C8DC/333333?text=Kids+Parties')"></div><div class="p-6 bg-white"><h3 class="text-2xl font-serif">Kids’ Party Setups</h3></div>
+                            </a>
+                            <a href="#rentals-wedding" class="rental-category-tile block rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 fade-in-up">
+                                <div class="h-64 bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/C7B7FF/333333?text=Wedding+D%C3%A9cor')"></div><div class="p-6 bg-white"><h3 class="text-2xl font-serif">Wedding Décor</h3></div>
+                            </a>
+                            <a href="#rentals-misc" class="rental-category-tile block rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 fade-in-up">
+                                <div class="h-64 bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/D4AF37/333333?text=Misc.+Rentals')"></div><div class="p-6 bg-white"><h3 class="text-2xl font-serif">Misc. Rentals</h3></div>
+                            </a>
+                        </div>
+                    </div>
+                </section>`,
+            gallery: `
+                <section id="gallery" class="page py-20 bg-gray-50">
+                    <div class="container mx-auto px-6">
+                        <h2 class="text-4xl md:text-5xl font-serif text-center text-charcoal-gray mb-12 fade-in-up">Our Gallery</h2>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up"><img src="https://images.pexels.com/photos/2788492/pexels-photo-2788492.jpeg" alt="Bright and airy table setup with transparent chairs" class="gallery-img w-full h-full object-cover cursor-pointer transform hover:scale-105 transition-transform duration-300" /></div>
+                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up"><img src="https://images.pexels.com/photos/1045541/pexels-photo-1045541.jpeg" alt="Elegant dark table setup for an event" class="gallery-img w-full h-full object-cover cursor-pointer transform hover:scale-105 transition-transform duration-300" /></div>
+                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up"><img src="https://images.pexels.com/photos/2062883/pexels-photo-2062883.jpeg" alt="Outdoor event table with floral centerpiece" class="gallery-img w-full h-full object-cover cursor-pointer transform hover:scale-105 transition-transform duration-300" /></div>
+                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up"><img src="https://images.pexels.com/photos/33911554/pexels-photo-33911554.jpeg" alt="Dark, moody table setup with baby's breath centerpiece" class="gallery-img w-full h-full object-cover cursor-pointer transform hover:scale-105 transition-transform duration-300" /></div>
+                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up"><img src="https://images.pexels.com/photos/19024675/pexels-photo-19024675.jpeg" alt="Elegant table setup with pink and orange flowers" class="gallery-img w-full h-full object-cover cursor-pointer transform hover:scale-105 transition-transform duration-300" /></div>
+                            <!-- LOCAL IMAGES -->
+                            <div class="overflow-hidden rounded-lg shadow-lg">
+                                <img src="360-booth.jpg" class="gallery-img w-full h-64 object-cover cursor-pointer" alt="360 Booth" />
+                            </div>
+
+                            <div class="overflow-hidden rounded-lg shadow-lg">
+                                <img src="dry-ice-clouds-1.jpg" class="gallery-img w-full h-64 object-cover cursor-pointer" alt="Dry Ice Clouds" />
+                            </div>
+
+                            <div class="overflow-hidden rounded-lg shadow-lg">
+                                <img src="cold-sparkler.jpeg" class="gallery-img w-full h-64 object-cover cursor-pointer" alt="Cold Sparkler" />
+                            </div>
+                        </div>
+                    </div>
+                </section>`,
+            contact: `
+                <section id="contact" class="page py-20 bg-gray-50">
+                    <div class="container mx-auto px-6 text-center">
+                        <h2 class="text-4xl md:text-5xl font-serif text-center text-charcoal-gray mb-12 fade-in-up">Get In Touch</h2>
+                        <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md fade-in-up">
+                            <p class="text-lg text-gray-700 mb-4">Have a question or want to discuss your event? We'd love to hear from you!</p>
+                             <div class="space-y-4">
+                                <p class="text-xl text-gray-800">
+                                    <i class="fas fa-envelope mr-3 text-gold"></i>
+                                    <a href="mailto:tadriels24@gmail.com" class="hover:underline">tadriels24@gmail.com</a>
+                                </p>
+                                <p class="text-xl text-gray-800">
+                                    <i class="fas fa-phone mr-3 text-gold"></i>
+                                    <a href="tel:+13653840161" class="hover:underline">(365) 384-0161</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>`,
             checkout: `
                 <section id="checkout" class="page py-20 bg-gray-50">
                     <div class="container mx-auto px-6">
                         <div id="inquiry-wrapper">
                             <h2 class="text-4xl md:text-5xl font-serif text-center text-charcoal-gray mb-12 fade-in-up">Complete Your Inquiry</h2>
                             <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md fade-in-up">
-                                <form id="inquiry-form" class="space-y-6" autocomplete="off">
+                                <form id="inquiry-form" class="space-y-6">
                                     <div id="services-booked-list" class="mb-4">
                                         <h3 class="text-2xl font-serif border-b pb-4">Services Booked</h3>
+                                        <!-- Items will be injected here -->
                                     </div>
                                     <h3 class="text-2xl font-serif border-b pb-4">Event Details</h3>
                                     <div><label for="celebrant_name" class="block mb-1">Celebrant Name*</label><input type="text" name="celebrant_name" class="w-full p-3 rounded-md border border-gray-300" required></div>
@@ -314,26 +381,18 @@
                                         <div><label for="event_time" class="block mb-1">Event Time*</label><input type="time" name="event_time" class="w-full p-3 rounded-md border border-gray-300" required></div>
                                     </div>
                                     <div><label for="message" class="block mb-1">Additional Details</label><textarea name="message" rows="4" class="w-full p-3 rounded-md border border-gray-300"></textarea></div>
-                                    
-                                    <!-- Rental selection dropdown - visible only if no cart items -->
-                                    <div id="order-selection" class="mb-6 relative hidden">
-                                        <label for="order-search" class="block mb-1 font-semibold">Select Rentals (search and choose)</label>
-                                        <input type="text" id="order-search" placeholder="Click to select rentals..." 
-                                            class="w-full p-3 rounded-md border border-gray-300 cursor-pointer" readonly autocomplete="off" />
-                                        <ul id="order-dropdown" class="hidden max-h-40 overflow-auto border border-gray-300 rounded-md mt-1 bg-white absolute w-full z-50 shadow-lg"></ul>
-                                    </div>
-
+                                   
                                     <h3 class="text-2xl font-serif border-b pb-4 pt-4">Your Contact Information</h3>
                                     <div><label for="customer_name" class="block mb-1">Customer Name*</label><input type="text" name="customer_name" class="w-full p-3 rounded-md border border-gray-300" required></div>
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div><label for="customer_email" class="block mb-1">Email*</label><input type="email" name="customer_email" class="w-full p-3 rounded-md border border-gray-300" required></div>
-                                    <div><label for="customer_phone" class="block mb-1">Phone*</label><input type="tel" name="customer_phone" class="w-full p-3 rounded-md border border-gray-300" required></div>
+                                       <div><label for="customer_email" class="block mb-1">Email*</label><input type="email" name="customer_email" class="w-full p-3 rounded-md border border-gray-300" required></div>
+                                       <div><label for="customer_phone" class="block mb-1">Phone*</label><input type="tel" name="customer_phone" class="w-full p-3 rounded-md border border-gray-300" required></div>
                                     </div>
                                     <button type="submit" id="submit-inquiry-btn" class="w-full bg-gold text-charcoal-gray font-bold py-3 px-6 rounded-full hover:bg-yellow-300 transition duration-300">Submit Inquiry</button>
                                 </form>
                             </div>
                         </div>
-                        <div id="success-message" class="hidden max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md fade-in-up text-center">
+                         <div id="success-message" class="hidden max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md fade-in-up text-center">
                             <h3 class="text-3xl font-serif text-green-600 mb-4">Thank You!</h3>
                             <p class="text-gray-600 mb-6">Your inquiry has been sent successfully. We will review your request and get back to you shortly to confirm availability and details.</p>
                             <a href="#home" class="text-gold hover:underline">Return to Home</a>
@@ -342,8 +401,30 @@
                 </section>`
         };
 
+        const rentalPages = {
+            bounce: `<section id="rentals-bounce" class="page py-20"><div class="container mx-auto px-6"><h2 class="text-4xl font-serif text-center mb-12">Bounce Houses</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">${createRentalItem('Rainbow Castle','https://placehold.co/600x400/F8C8DC/333333?text=Rainbow+Castle','Rainbow Castle', 250)}${createRentalItem('Princess Pink Castle','https://placehold.co/600x400/F8C8DC/333333?text=Princess+Pink','Princess Pink Castle', 275)}${createRentalItem('Tropical Paradise','https://placehold.co/600x400/F8C8DC/333333?text=Tropical+Paradise','Tropical Paradise', 300)}${createRentalItem('Sports Arena','https://placehold.co/600x400/F8C8DC/333333?text=Sports+Arena','Sports Arena', 280)}${createRentalItem('Jungle Safari','https://placehold.co/600x400/F8C8DC/333333?text=Jungle+Safari','Jungle Safari', 280)}${createRentalItem('Deluxe Obstacle Course','https://placehold.co/600x400/F8C8DC/333333?text=Obstacle+Course','Deluxe Obstacle Course', 450)}${createRentalItem('Toddler Playland','https://placehold.co/600x400/F8C8DC/333333?text=Toddler+Playland','Toddler Playland', 200)}</div></div></section>`,
+            flower: `<section id="rentals-flower" class="page py-20"><div class="container mx-auto px-6"><h2 class="text-4xl font-serif text-center mb-12">Flower Walls</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">${createRentalItem('Blush Pink Rose Wall','https://placehold.co/600x400/C7B7FF/333333?text=Blush+Pink+Rose','Blush Pink Rose Wall', 350)}${createRentalItem('White & Cream Hydrangea','https://placehold.co/600x400/C7B7FF/333333?text=Hydrangea+Wall','White & Cream Hydrangea', 375)}${createRentalItem('Gold & White Luxury','https://placehold.co/600x400/C7B7FF/333333?text=Luxury+Wall','Gold & White Luxury', 450)}${createRentalItem('Red Romance Rose','https://placehold.co/600x400/C7B7FF/333333?text=Red+Rose+Wall','Red Romance Rose', 350)}${createRentalItem('Greenery & Floral Mix','https://placehold.co/600x400/C7B7FF/333333?text=Greenery+Mix','Greenery & Floral Mix', 300)}${createRentalItem('Pastel Ombre Wall','https://placehold.co/600x400/C7B7FF/333333?text=Pastel+Ombre','Pastel Ombre Wall', 400)}${createRentalItem('Lavender Dreams','https://placehold.co/600x400/C7B7FF/333333?text=Lavender+Dreams','Lavender Dreams Wall', 375)}</div></div></section>`,
+            balloon: `<section id="rentals-balloon" class="page py-20"><div class="container mx-auto px-6"><h2 class="text-4xl font-serif text-center mb-12">Balloon Décor</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">${createRentalItem('Gold & White Arch','https://placehold.co/600x400/D4AF37/333333?text=Gold+Arch','Gold & White Arch', 400)}${createRentalItem('Pastel Rainbow Garland','https://placehold.co/600x400/D4AF37/333333?text=Rainbow+Garland','Pastel Rainbow Garland', 350)}${createRentalItem('Pink & Gold Hoop','https://placehold.co/600x400/D4AF37/333333?text=Pink+Hoop','Pink & Gold Hoop', 300)}${createRentalItem('Organic Green & White','https://placehold.co/600x400/D4AF37/333333?text=Organic+Arch','Organic Green & White', 380)}${createRentalItem('Blue & Silver Garland','https://placehold.co/600x400/D4AF37/333333?text=Blue+Garland','Blue & Silver Garland', 350)}${createRentalItem('Themed Character Display','https://placehold.co/600x400/D4AF37/333333?text=Character+Display','Themed Character Display', 250)}${createRentalItem('Giant Number Display','https://placehold.co/600x400/D4AF37/333333?text=Giant+Numbers','Giant Number Display', 150)}</div></div></section>`,
+            kids: `<section id="rentals-kids" class="page py-20"><div class="container mx-auto px-6"><h2 class="text-4xl font-serif text-center mb-12">Kids’ Party Setups</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">${createRentalItem('Princess Tea Party','https://placehold.co/600x400/F8C8DC/333333?text=Tea+Party','Princess Tea Party', 450)}${createRentalItem('Superhero Party','https://placehold.co/600x400/F8C8DC/333333?text=Superhero+Party','Superhero Party', 450)}${createRentalItem('Jungle Safari Setup','https://placehold.co/600x400/F8C8DC/333333?text=Jungle+Safari','Jungle Safari Setup', 475)}${createRentalItem('Unicorn Party','https://placehold.co/600x400/F8C8DC/333333?text=Unicorn+Party','Unicorn Party', 475)}${createRentalItem('Pirate Adventure','https://placehold.co/600x400/F8C8DC/333333?text=Pirate+Adventure','Pirate Adventure', 425)}${createRentalItem('Candyland Party','https://placehold.co/600x400/F8C8DC/333333?text=Candyland','Candyland Party', 500)}${createRentalItem('Dino Dig Party','https://placehold.co/600x400/F8C8DC/333333?text=Dino+Dig','Dino Dig Party', 425)}</div></div></section>`,
+            wedding: `<section id="rentals-wedding" class="page py-20"><div class="container mx-auto px-6"><h2 class="text-4xl font-serif text-center mb-12">Wedding Décor & Setups</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">${createRentalItem('Elegant Gold Arch','https://placehold.co/600x400/C7B7FF/333333?text=Gold+Arch','Elegant Gold Arch', 300)}${createRentalItem('White Draped Arch','https://placehold.co/600x400/C7B7FF/333333?text=Draped+Arch','White Draped Arch', 250)}${createRentalItem('Gold & Crystal Centerpieces','https://placehold.co/600x400/C7B7FF/333333?text=Centerpieces','Gold & Crystal Centerpieces', 50)}${createRentalItem('Luxury Throne Chairs','https://placehold.co/600x400/C7B7FF/333333?text=Throne+Chairs','Luxury Throne Chairs', 200)}${createRentalItem('Sequin Table Linens','https://placehold.co/600x400/C7B7FF/333333?text=Sequin+Linens','Sequin Table Linens', 40)}${createRentalItem('Vintage Candle Holder Set','https://placehold.co/600x400/C7B7FF/333333?text=Candle+Holders','Vintage Candle Holder Set', 30)}${createRentalItem('Premium Aisle Runner','https://placehold.co/600x400/C7B7FF/333333?text=Aisle+Runner','Premium Aisle Runner', 100)}</div></div></section>`,
+            misc: `<section id="rentals-misc" class="page py-20"><div class="container mx-auto px-6"><h2 class="text-4xl font-serif text-center mb-12">Miscellaneous Event Rentals</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">${createRentalItem(
+  'Cold Sparklers',
+  'cold-sparkler.jpeg',
+  'Cold Sparklers',
+  150)}${createRentalItem(
+  'Dry Ice Fog Machine (Dancing on Clouds)',
+  'dry-ice-clouds-1.jpg',
+  'Dry Ice Fog Machine',
+  400)}${createRentalItem(
+  '360° Video Booth Machine',
+  '360-booth.jpg',
+  '360° Video Booth Machine',
+  500)}${createRentalItem('Round Banquet Tables','https://placehold.co/600x400/D4AF37/333333?text=Banquet+Tables','Round Banquet Tables', 15)}${createRentalItem('Gold Chiavari Chairs','https://placehold.co/600x400/D4AF37/333333?text=Chiavari+Chairs','Gold Chiavari Chairs', 9)}${createRentalItem('White Folding Chairs','https://placehold.co/600x400/D4AF37/333333?text=Folding+Chairs','White Folding Chairs', 5)}${createRentalItem('LED Marquee LOVE Letters','https://placehold.co/600x400/D4AF37/333333?text=LOVE+Letters','LED Marquee LOVE Letters', 200)}${createRentalItem('Portable Dance Floor','https://placehold.co/600x400/D4AF37/333333?text=Dance+Floor','Portable Dance Floor', 250)}${createRentalItem('Outdoor Tent Canopy','https://placehold.co/600x400/D4AF37/333333?text=Tent+Canopy','Outdoor Tent Canopy', 300)}${createRentalItem('Stage Platform Rental','https://placehold.co/600x400/D4AF37/333333?text=Stage+Platform','Stage Platform Rental', 150)}</div></div></section>`,
+        };
+
         // --- Main App Logic ---
         document.addEventListener('DOMContentLoaded', function() {
+            // --- Element Selectors ---
             const pageContent = document.getElementById('page-content');
             const homePage = document.getElementById('home');
             const navLinks = document.querySelectorAll('.nav-link, #mobile-menu a');
@@ -368,11 +449,16 @@
             const lightboxImg = document.getElementById('lightbox-img');
             const closeLightboxBtn = document.getElementById('close-lightbox-btn');
 
+            // --- App State ---
             let cart = JSON.parse(localStorage.getItem('tadrielsCart')) || [];
             let inquiryData = {};
 
+            // --- Cart Functions ---
             const saveCart = () => localStorage.setItem('tadrielsCart', JSON.stringify(cart));
-            const calculateSubtotal = () => cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+           
+            const calculateSubtotal = () => {
+                return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            };
 
             const updateCartCount = () => {
                 const count = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -386,7 +472,9 @@
             const showToast = (message) => {
                 toast.textContent = message;
                 toast.classList.remove('opacity-0');
-                setTimeout(() => toast.classList.add('opacity-0'), 2000);
+                setTimeout(() => {
+                    toast.classList.add('opacity-0');
+                }, 2000);
             };
 
             const addToCart = (itemName, itemPrice) => {
@@ -410,17 +498,17 @@
             };
            
             const updateQuantity = (itemName, newQuantity) => {
-                const item = cart.find(item => item.name === itemName);
-                if(item) {
-                    if(newQuantity > 0) {
-                        item.quantity = newQuantity;
-                    } else {
-                        removeFromCart(itemName);
-                    }
-                    saveCart();
-                    updateCartCount();
-                    renderCartItems();
-                }
+                 const item = cart.find(item => item.name === itemName);
+                 if(item) {
+                     if(newQuantity > 0) {
+                         item.quantity = newQuantity;
+                     } else {
+                         removeFromCart(itemName);
+                     }
+                     saveCart();
+                     updateCartCount();
+                     renderCartItems();
+                 }
             };
 
             const renderCartItems = () => {
@@ -431,6 +519,7 @@
                     checkoutBtn.disabled = true;
                     return;
                 }
+               
                 checkoutBtn.classList.remove('opacity-50', 'cursor-not-allowed');
                 checkoutBtn.disabled = false;
                 subtotalDisplay.innerHTML = `<strong>Subtotal:</strong> $${calculateSubtotal().toFixed(2)}`;
@@ -438,7 +527,7 @@
                     <div class="flex justify-between items-center mb-4">
                         <div>
                             <p class="font-bold">${item.name}</p>
-                            <p class="text-sm text-gray-500">$${item.price.toFixed(2)} each</p>
+                             <p class="text-sm text-gray-500">$${item.price.toFixed(2)} each</p>
                             <div class="flex items-center mt-1">
                                 <label for="qty-${item.name.replace(/\s+/g, '-')}" class="mr-2 text-sm">Qty:</label>
                                 <input type="number" id="qty-${item.name.replace(/\s+/g, '-')}" value="${item.quantity}" min="1" class="w-16 p-1 border rounded-md quantity-input" data-item="${item.name}" />
@@ -485,6 +574,7 @@
                 lightbox.classList.add('invisible', 'opacity-0');
             };
 
+            // --- Page Router & Logic ---
             const loadPage = (hash) => {
                 document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
                 pageContent.innerHTML = '';
@@ -492,78 +582,12 @@
                 const rentalCategory = hash.includes('rentals-') ? hash.substring(9) : null;
 
                 if (pageKey === 'checkout') {
-                    pageContent.innerHTML = pages.checkout;
-                    const servicesBookedList = document.getElementById('services-booked-list');
-                    if(servicesBookedList) {
-                        servicesBookedList.innerHTML = cart.map(item => `<p class="text-gray-700 mt-2"><strong>${item.quantity}x</strong> ${item.name} - $${(item.price * item.quantity).toFixed(2)}</p>`).join('');
+                     pageContent.innerHTML = pages.checkout;
+                     const servicesBookedList = document.getElementById('services-booked-list');
+                     if(servicesBookedList) {
+                        servicesBookedList.innerHTML += cart.map(item => `<p class="text-gray-700 mt-2"><strong>${item.quantity}x</strong> ${item.name} - $${(item.price * item.quantity).toFixed(2)}</p>`).join('');
                         servicesBookedList.innerHTML += `<hr class="my-2"><p class="font-bold text-right text-xl">Subtotal: $${calculateSubtotal().toFixed(2)}</p>`;
-                    }
-                    // Rental dropdown visible only if no cart items
-                    const orderSelection = document.getElementById('order-selection');
-                    if (cart.length === 0 && orderSelection) {
-                        orderSelection.style.display = 'block';
-
-                        const ordersList = [
-                            'Rainbow Castle', 'Princess Pink Castle', 'Tropical Paradise', 'Sports Arena', 'Jungle Safari', 'Deluxe Obstacle Course', 'Toddler Playland',
-                            'Blush Pink Rose Wall', 'White & Cream Hydrangea', 'Gold & White Luxury', 'Red Romance Rose', 'Greenery & Floral Mix', 'Pastel Ombre Wall', 'Lavender Dreams',
-                            'Gold & White Arch', 'Pastel Rainbow Garland', 'Pink & Gold Hoop', 'Organic Green & White', 'Blue & Silver Garland', 'Themed Character Display', 'Giant Number Display',
-                            'Princess Tea Party', 'Superhero Party', 'Jungle Safari Setup', 'Unicorn Party', 'Pirate Adventure', 'Candyland Party', 'Dino Dig Party',
-                            'Elegant Gold Arch', 'White Draped Arch', 'Gold & Crystal Centerpieces', 'Luxury Throne Chairs', 'Sequin Table Linens', 'Vintage Candle Holder Set', 'Premium Aisle Runner',
-                            'Cold Sparklers', 'Dry Ice Fog Machine (Dancing on Clouds)', '360° Video Booth Machine', 'Round Banquet Tables', 'Gold Chiavari Chairs', 'White Folding Chairs', 'LED Marquee LOVE Letters', 'Portable Dance Floor', 'Outdoor Tent Canopy', 'Stage Platform Rental'
-                        ];
-
-                        const orderSearchInput = document.getElementById('order-search');
-                        const orderDropdown = document.getElementById('order-dropdown');
-
-                        function getPriceByName(name) {
-                            const prices = {
-                                'Rainbow Castle': 250, 'Princess Pink Castle': 275, 'Tropical Paradise': 300, 'Sports Arena': 280, 'Jungle Safari': 280, 'Deluxe Obstacle Course': 450, 'Toddler Playland': 200,
-                                'Blush Pink Rose Wall':350, 'White & Cream Hydrangea':375, 'Gold & White Luxury':450, 'Red Romance Rose':350, 'Greenery & Floral Mix':300, 'Pastel Ombre Wall':400, 'Lavender Dreams':375,
-                                'Gold & White Arch':400, 'Pastel Rainbow Garland':350, 'Pink & Gold Hoop':300, 'Organic Green & White':380, 'Blue & Silver Garland':350, 'Themed Character Display':250, 'Giant Number Display':150,
-                                'Princess Tea Party':450, 'Superhero Party':450, 'Jungle Safari Setup':475, 'Unicorn Party':475, 'Pirate Adventure':425, 'Candyland Party':500, 'Dino Dig Party':425,
-                                'Elegant Gold Arch':300, 'White Draped Arch':250, 'Gold & Crystal Centerpieces':50, 'Luxury Throne Chairs':200, 'Sequin Table Linens':40, 'Vintage Candle Holder Set':30, 'Premium Aisle Runner':100,
-                                'Cold Sparklers':150, 'Dry Ice Fog Machine (Dancing on Clouds)':400, '360° Video Booth Machine':500,
-                                'Round Banquet Tables':15, 'Gold Chiavari Chairs':9, 'White Folding Chairs':5, 'LED Marquee LOVE Letters':200, 'Portable Dance Floor':250, 'Outdoor Tent Canopy':300, 'Stage Platform Rental':150
-                            };
-                            return prices[name] || 0;
-                        }
-
-                        function filterOrders(query) {
-                            orderDropdown.innerHTML = '';
-                            const filtered = ordersList.filter(item => item.toLowerCase().includes(query.toLowerCase()));
-                            if (filtered.length === 0) {
-                                orderDropdown.innerHTML = '<li class="p-2 text-gray-500">No results found</li>';
-                            } else {
-                                filtered.forEach(item => {
-                                    const li = document.createElement('li');
-                                    li.textContent = item;
-                                    li.className = 'px-4 py-2 cursor-pointer hover:bg-gray-200';
-                                    li.addEventListener('click', () => {
-                                        addToCart(item, getPriceByName(item));
-                                        orderDropdown.classList.add('hidden');
-                                        orderSearchInput.value = '';
-                                    });
-                                    orderDropdown.appendChild(li);
-                                });
-                            }
-                        }
-
-                        orderSearchInput.addEventListener('click', () => {
-                            filterOrders('');
-                            orderDropdown.classList.toggle('hidden');
-                        });
-
-                        orderSearchInput.addEventListener('input', e => filterOrders(e.target.value));
-
-                        document.addEventListener('click', e => {
-                            if (!orderSearchInput.contains(e.target) && !orderDropdown.contains(e.target)) {
-                                orderDropdown.classList.add('hidden');
-                            }
-                        });
-
-                    } else if(orderSelection) {
-                        orderSelection.style.display = 'none';
-                    }
+                     }
                 } else if (rentalCategory && rentalPages[rentalCategory]) {
                     pageContent.innerHTML = rentalPages[rentalCategory];
                 } else if (pages[pageKey]) {
@@ -606,6 +630,7 @@
                 if (inquiryForm) inquiryForm.addEventListener('submit', handleInquiryForm);
             };
 
+            // --- Event Handlers ---
             const handleInquiryForm = (event) => {
                 event.preventDefault();
                 const form = event.target;
@@ -646,10 +671,12 @@
                     });
             };
 
+            // --- Initial Setup ---
             (function() { emailjs.init(PUBLIC_KEY); })();
             loadPage(window.location.hash);
             updateCartCount();
 
+            // --- Event Listeners ---
             window.addEventListener('hashchange', () => loadPage(window.location.hash));
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
@@ -663,7 +690,7 @@
                     }
                 });
             });
-
+           
             mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
             mobileDropdowns.forEach(button => button.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -680,13 +707,15 @@
                     window.location.hash = '#checkout';
                 }
             });
-
+           
             confirmYesBtn.addEventListener('click', sendInquiryEmail);
             confirmNoBtn.addEventListener('click', closeConfirmationModal);
             confirmationModal.addEventListener('click', (e) => { if(e.target === confirmationModal) closeConfirmationModal(); });
             closeLightboxBtn.addEventListener('click', closeLightbox);
             lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox(); });
 
+
+            // Hero slider
             const slides = document.querySelectorAll('.hero-slide');
             if(slides.length > 0) {
                 let currentSlide = 0;
@@ -697,6 +726,7 @@
                 }, 5000);
             }
 
+            // Scroll animations
             function animateOnScroll() {
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
@@ -712,3 +742,4 @@
 
 </body>
 </html>
+
