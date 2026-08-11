@@ -784,17 +784,39 @@
             submittingCheckout = true;
             confirmYes.disabled = true;
             confirmYes.textContent = 'Sending...';
+            const SERVICE_ID = 'service_bzuwfpo';
+const PUBLIC_KEY = '7jYqEhkLxexQnPO3z';
+const INQUIRY_TEMPLATE_ID = 'template_pzsdi9s';
 
             try {
               const t = totals(cart, pendingInquiry.discount_code);
-              await emailjs.send(SERVICE_ID, INQUIRY_TEMPLATE_ID, { ...pendingInquiry, subtotal: t.sub.toFixed(2), discount: t.disc.toFixed(2), total: t.total.toFixed(2) });
-              $('#confirmation-modal')?.classList.add('invisible','opacity-0');
-              $('#checkout-form')?.classList.add('hidden');
-              $('#success-message')?.classList.remove('hidden');
-              cart = [];
-              saveCart();
-              updateCounts();
-              renderCart();
+
+await emailjs.send(
+  SERVICE_ID,
+  INQUIRY_TEMPLATE_ID,
+  {
+    ...pendingInquiry,
+    subtotal: t.sub.toFixed(2),
+    discount: t.disc.toFixed(2),
+    total: t.total.toFixed(2),
+
+    // Same inquiry-style fields
+    inquiry_name: pendingInquiry.customer_name,
+    inquiry_email: pendingInquiry.customer_email,
+    inquiry_phone: pendingInquiry.customer_phone,
+    inquiry_message: pendingInquiry.message,
+
+    // Checkout details
+    event_type: pendingInquiry.event_type,
+    guest_count: pendingInquiry.guest_count,
+    preferred_date: pendingInquiry.event_date,
+    preferred_time: pendingInquiry.event_time,
+    venue: pendingInquiry.venue,
+    contact_method: pendingInquiry.preferred_contact_method,
+    discount_code: pendingInquiry.discount_code,
+    services: pendingInquiry.cart_items
+  }
+);
             } catch {
               alert('Failed to send. Please try again.');
             } finally {
