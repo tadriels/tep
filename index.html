@@ -1,1006 +1,869 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Tadriels Events - Premium event rentals and planning for weddings, parties, and celebrations." />
-    <title>Tadriels Events | Premium Event Rentals & Planning</title>
-    
-    <!-- Favicons -->
-    <link rel="icon" href="./favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
-    <link rel="apple-touch-icon" href="./apple-touch-icon.png">
-    <link rel="manifest" href="./site.webmanifest">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet" />
-    
-    <!-- EmailJS -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    
-    <style>
-        :root {
-            --gold: #D4AF37;
-            --blush-pink: #F8C8DC;
-            --soft-lavender: #C7B7FF;
-            --white: #FFFFFF;
-            --charcoal-gray: #2C2C2C;
-            --light-gray: #F5F5F5;
-            --accent: #8B7355;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--charcoal-gray);
-            line-height: 1.6;
-            background-color: var(--white);
-        }
-        
-        .font-serif {
-            font-family: 'Lora', serif;
-        }
-        
-        .font-elegant {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-        }
-        
-        .font-love {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 700;
-            font-size: 2.5rem;
-        }
-        
-        .text-gold { color: var(--gold); }
-        .bg-gold { background-color: var(--gold); }
-        .bg-blush-pink { background-color: var(--blush-pink); }
-        .bg-soft-lavender { background-color: var(--soft-lavender); }
-        
-        /* Navigation */
-        header {
-            background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(244,243,240,1) 100%);
-            backdrop-filter: blur(10px);
-        }
-        
-        .nav-link {
-            position: relative;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            color: var(--charcoal-gray);
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--gold);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
-        }
-        
-        .dropdown:hover .dropdown-menu {
-            display: block;
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .dropdown-menu {
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        /* Hero Section */
-        .hero-section {
-            position: relative;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .hero-slides {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .hero-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .hero-slide.active {
-            opacity: 1;
-        }
-        
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%);
-            z-index: 1;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            color: white;
-            animation: fadeInUp 1s ease-out;
-        }
-        
-        .hero-content h1 {
-            font-size: 4.5rem;
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.02em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-        
-        .hero-content p {
-            font-size: 1.3rem;
-            margin-bottom: 2.5rem;
-            font-weight: 300;
-            letter-spacing: 0.01em;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        
-        .fade-in-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Buttons */
-        .btn-primary {
-            background-color: var(--gold);
-            color: var(--charcoal-gray);
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            border: 2px solid var(--gold);
-            letter-spacing: 0.05em;
-        }
-        
-        .btn-primary:hover {
-            background-color: transparent;
-            color: var(--gold);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.2);
-        }
-        
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--charcoal-gray);
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            border: 2px solid var(--charcoal-gray);
-        }
-        
-        .btn-secondary:hover {
-            background-color: var(--charcoal-gray);
-            color: var(--white);
-            transform: translateY(-2px);
-        }
-        
-        /* Cards */
-        .rental-card {
-            background: var(--white);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: all 0.4s ease;
-            border-top: 4px solid var(--gold);
-        }
-        
-        .rental-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-        
-        .rental-card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-        
-        .rental-card:hover img {
-            transform: scale(1.05);
-        }
-        
-        .rental-card-content {
-            padding: 1.5rem;
-            text-align: center;
-        }
-        
-        .rental-card h3 {
-            font-family: 'Lora', serif;
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: var(--charcoal-gray);
-        }
-        
-        .rental-card p {
-            color: var(--gold);
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-        
-        /* Sections */
-        section {
-            scroll-behavior: smooth;
-        }
-        
-        .section-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-            padding-bottom: 1.5rem;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-        }
-        
-        /* Cart & Modal */
-        .modal, .cart-sidebar, .lightbox {
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-        
-        .cart-sidebar-content, .modal-content {
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-        
-        #cart-count, #mobile-cart-count {
-            position: absolute;
-            top: -8px;
-            right: -12px;
-            background-color: var(--gold);
-            color: var(--white);
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            border: 2px solid var(--white);
-        }
-        
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, var(--charcoal-gray) 0%, #1a1a1a 100%);
-            color: var(--white);
-            padding: 4rem 0 2rem;
-        }
-        
-        footer a {
-            color: var(--gold);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        footer a:hover {
-            color: var(--white);
-        }
-        
-        .footer-divider {
-            width: 60px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            margin: 1.5rem auto;
-        }
-        
-        /* Mobile Menu */
-        .mobile-dropdown.open .mobile-dropdown-menu {
-            display: block;
-        }
-        
-        .mobile-dropdown-menu {
-            display: none;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-content p {
-                font-size: 1rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-    
-.font-logo{font-family:'Great Vibes',cursive;}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Tadriels Events - Premium event rentals and planning for weddings, parties, and celebrations." />
+  <meta property="og:title" content="Tadriels Events | Premium Event Rentals & Planning" />
+  <meta property="og:description" content="Premium event rentals and planning for weddings, parties, and celebrations." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.pexels.com/photos/11474201/pexels-photo-11474201.jpeg" />
+  <title>Tadriels Events | Premium Event Rentals & Planning</title>
+
+  <link rel="icon" href="./favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <link rel="manifest" href="./site.webmanifest">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+  <style>
+    :root{
+      --gold:#D4AF37;
+      --blush-pink:#F8C8DC;
+      --soft-lavender:#C7B7FF;
+      --white:#FFFFFF;
+      --charcoal-gray:#2C2C2C;
+      --light-gray:#F5F5F5;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Poppins',sans-serif;
+      color:var(--charcoal-gray);
+      background:var(--white);
+      overflow-x:hidden;
+      line-height:1.6;
+    }
+    img{max-width:100%;display:block}
+    a{text-decoration:none}
+    .font-logo{font-family:'Great Vibes',cursive}
+    .font-serif{font-family:'Lora',serif}
+    .font-elegant{font-family:'Cormorant Garamond',serif}
+    .text-gold{color:var(--gold)}
+    .bg-gold{background:var(--gold)}
+    .bg-light-gray{background:var(--light-gray)}
+    .text-charcoal-gray{color:var(--charcoal-gray)}
+    .btn-primary,.btn-secondary{
+      display:inline-flex;align-items:center;justify-content:center;
+      border-radius:9999px;padding:1rem 1.6rem;font-weight:700;
+      transition:.25s ease;border:2px solid transparent
+    }
+    .btn-primary{background:var(--gold);color:var(--charcoal-gray);border-color:var(--gold)}
+    .btn-primary:hover{background:transparent;color:var(--gold)}
+    .btn-secondary{background:transparent;color:var(--charcoal-gray);border-color:var(--charcoal-gray)}
+    .btn-secondary:hover{background:var(--charcoal-gray);color:#fff}
+    .focus-ring:focus{outline:none;box-shadow:0 0 0 3px rgba(212,175,55,.22);border-color:var(--gold)}
+    .nav-link{position:relative;font-weight:600}
+    .nav-link::after{
+      content:'';
+      position:absolute;left:0;bottom:-4px;height:2px;width:0;background:var(--gold);
+      transition:.25s ease
+    }
+    .nav-link:hover::after,.nav-link.active::after{width:100%}
+    .dropdown-menu{display:none}
+    .dropdown:hover .dropdown-menu{display:block}
+    .mobile-dropdown-menu{display:none}
+    .mobile-dropdown.open .mobile-dropdown-menu{display:block}
+    .hero-section{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;background-size:cover;background-position:center}
+    .hero-slide.active{opacity:1}
+    .hero-overlay{position:absolute;inset:0;background:radial-gradient(circle at center, rgba(0,0,0,.24), rgba(0,0,0,.64));z-index:1}
+    .hero-content{position:relative;z-index:2;color:#fff;text-align:center}
+    .section-title{
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(2.2rem,4vw,3.4rem);
+      text-align:center;
+      font-weight:700;
+      margin-bottom:2rem
+    }
+    .section-title::after{
+      content:'';
+      display:block;
+      width:72px;height:3px;margin:.75rem auto 0;
+      background:linear-gradient(90deg, transparent, var(--gold), transparent)
+    }
+    .rental-card,.inquiry-form-card,.glass-card{
+      background:#fff;border-radius:1rem;overflow:hidden;
+      box-shadow:0 10px 30px rgba(0,0,0,.08);
+      border:1px solid rgba(212,175,55,.14)
+    }
+    .rental-card{border-top:4px solid var(--gold);color:inherit}
+    .rental-card img{width:100%;height:250px;object-fit:cover}
+    .fade-in-up{opacity:0;transform:translateY(24px);transition:all .7s ease}
+    .fade-in-up.visible{opacity:1;transform:translateY(0)}
+    #cart-count,#mobile-cart-count{
+      position:absolute;top:-8px;right:-10px;width:22px;height:22px;border-radius:9999px;
+      background:var(--gold);color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;border:2px solid #fff
+    }
+    .drawer,.modal,.lightbox{transition:opacity .25s ease,visibility .25s ease}
+    .drawer-panel{transition:transform .25s ease}
+    footer{background:linear-gradient(135deg,var(--charcoal-gray),#1b1b1b);color:#fff}
+    .hidden-route{display:none!important}
+    .input-error{border-color:#dc2626!important}
+    .status-success{background:#ecfdf5;color:#047857;border-color:#a7f3d0}
+    .status-error{background:#fef2f2;color:#b91c1c;border-color:#fecaca}
+    .status-info{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}
+    button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+      outline:2px solid var(--gold);outline-offset:2px
+    }
+  </style>
 </head>
-<body class="bg-white">
-
-    <!-- Header -->
-    <header class="sticky top-0 z-50 shadow-sm">
-        <nav class="container mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
-            <!-- Logo -->
-            <a href="#home" class="font-love text-gold text-3xl md:text-4xl">
-                Tadriels Events
-            </a>
-            
-            <!-- Desktop Navigation -->
-            <div class="hidden lg:flex items-center space-x-10">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <div class="relative dropdown">
-                    <a href="#rentals" class="nav-link">Rentals</a>
-                    <div class="dropdown-menu absolute hidden bg-white shadow-2xl rounded-md mt-4 py-3 w-48">
-                        <a href="#rentals-bounce" class="block px-4 py-2 text-charcoal-gray hover:text-gold transition">Bounce Houses</a>
-                        <a href="#rentals-flower" class="block px-4 py-2 text-charcoal-gray hover:text-gold transition">Flower Walls</a>
-                        <a href="#rentals-balloon" class="block px-4 py-2 text-charcoal-gray hover:text-gold transition">Balloon Décor</a>
-                        <a href="#rentals-kids" class="block px-4 py-2 text-charcoal-gray hover:text-gold transition">Kids' Parties</a>
-                        <a href="#rentals-wedding" class="block px-4 py-2 text-charcoal-gray hover:text-gold transition">Wedding Décor</a>
-                        <a href="#rentals-misc" class="block px-4 py-2 text-charcoal-gray hover:text-gold transition">Misc. Rentals</a>
-                    </div>
-                </div>
-                <a href="#gallery" class="nav-link">Gallery</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
-            
-            <!-- Cart & Mobile Menu -->
-            <div class="flex items-center space-x-4">
-                <button id="cart-icon" class="relative cursor-pointer hidden md:block">
-                    <i class="fas fa-shopping-bag text-xl text-charcoal-gray"></i>
-                    <span id="cart-count" class="hidden">0</span>
-                </button>
-                
-                <button id="mobile-menu-button" class="lg:hidden text-charcoal-gray">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
-        </nav>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden px-4 pb-4 bg-gray-50 border-t">
-            <a href="#home" class="block py-2 text-charcoal-gray hover:text-gold">Home</a>
-            <a href="#about" class="block py-2 text-charcoal-gray hover:text-gold">About</a>
-            <div class="mobile-dropdown">
-                <button class="w-full text-left py-2 flex justify-between items-center text-charcoal-gray hover:text-gold">
-                    Rentals <i class="fas fa-chevron-down text-sm"></i>
-                </button>
-                <div class="mobile-dropdown-menu pl-4">
-                    <a href="#rentals-bounce" class="block py-2 text-charcoal-gray">Bounce Houses</a>
-                    <a href="#rentals-flower" class="block py-2 text-charcoal-gray">Flower Walls</a>
-                    <a href="#rentals-balloon" class="block py-2 text-charcoal-gray">Balloon Décor</a>
-                    <a href="#rentals-kids" class="block py-2 text-charcoal-gray">Kids' Parties</a>
-                    <a href="#rentals-wedding" class="block py-2 text-charcoal-gray">Wedding Décor</a>
-                    <a href="#rentals-misc" class="block py-2 text-charcoal-gray">Misc. Rentals</a>
-                </div>
-            </div>
-            <a href="#gallery" class="block py-2 text-charcoal-gray hover:text-gold">Gallery</a>
-            <a href="#contact" class="block py-2 text-charcoal-gray hover:text-gold">Contact</a>
-            <button id="mobile-cart-icon" class="w-full mt-4 py-2 border-t text-center text-charcoal-gray hover:text-gold flex items-center justify-center space-x-2">
-                <i class="fas fa-shopping-bag"></i>
-                <span>Cart</span>
-                <span id="mobile-cart-count" class="text-gold font-bold hidden">0</span>
-            </button>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="hero-section" style="display:flex;">
-            <div class="hero-slides" id="hero-slides">
-                <div class="hero-slide" style="background-image: url('https://images.pexels.com/photos/11474201/pexels-photo-11474201.jpeg');"></div>
-                <div class="hero-slide" style="background-image: url('https://images.pexels.com/photos/265940/pexels-photo-265940.jpeg');"></div>
-                <div class="hero-slide" style="background-image: url('https://images.pexels.com/photos/2306277/pexels-photo-2306277.jpeg');"></div>
-                <div class="hero-slide" style="background-image: url('https://images.pexels.com/photos/2306281/pexels-photo-2306281.jpeg');"></div>
-            </div>
-            <div class="hero-overlay"></div>
-            
-            <div class="hero-content container mx-auto px-4">
-                <h1>Celebrate in Style</h1>
-                <p>Premium event rentals and planning for your unforgettable moments</p>
-                <a href="#checkout" class="btn-primary">Book Your Event</a>
-            </div>
-        </section>
-
-        <!-- Dynamic Content Area -->
-        <div id="page-content"></div>
-
-        <!-- CTA Section -->
-        <section class="py-20 bg-light-gray">
-            <div class="container mx-auto px-4 text-center fade-in-up">
-                <h2 class="section-title">Ready to Create Magic?</h2>
-                <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">Let our team of professionals bring your vision to life with our curated selection of premium rentals and event planning services.</p>
-                <a href="#contact" class="btn-primary">Get Your Free Consultation</a>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                <div class="text-center">
-                    <h3 class="font-love text-gold text-3xl mb-2">Tadriels Events</h3>
-                    <p class="text-gray-300">Premium Event Rentals & Planning</p>
-                </div>
-                <div class="text-center">
-                    <p class="font-semibold mb-2">Quick Links</p>
-                    <div class="space-y-1">
-                        <p><a href="#home">Home</a></p>
-                        <p><a href="#rentals">Rentals</a></p>
-                        <p><a href="#gallery">Gallery</a></p>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <p class="font-semibold mb-2">Contact</p>
-                    <p><a href="mailto:tadriels24@gmail.com">tadriels24@gmail.com</a></p>
-                    <p><a href="tel:+13653840161">(365) 384-0161</a></p>
-                </div>
-            </div>
-            
-            <div class="footer-divider"></div>
-            
-            <div class="flex justify-center space-x-6 mb-8">
-                <a href="#" class="text-2xl hover:text-gold transition"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="text-2xl hover:text-gold transition"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="text-2xl hover:text-gold transition"><i class="fab fa-pinterest-p"></i></a>
-            </div>
-            
-            <div class="text-center text-gray-400 text-sm py-4 border-t border-gray-700">
-                <p>&copy; 2026 Tadriels Event Planner & Rentals. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Cart Sidebar -->
-    <div id="cart-sidebar" class="cart-sidebar fixed inset-0 bg-black bg-opacity-50 z-50 invisible opacity-0">
-        <div id="cart-sidebar-content" class="cart-sidebar-content absolute top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col transform translate-x-full">
-            <div class="flex justify-between items-center p-6 border-b">
-                <h2 class="text-2xl font-serif">Your Inquiry</h2>
-                <button id="close-cart-btn" class="text-3xl">&times;</button>
-            </div>
-            <div id="cart-items-container" class="flex-grow p-6 overflow-y-auto">
-                <!-- Cart items injected here -->
-            </div>
-            <div class="p-6 border-t">
-                <div id="subtotal" class="text-right text-lg font-serif mb-4"></div>
-                <button id="checkout-btn" class="w-full btn-primary">Proceed to Checkout</button>
-            </div>
-        </div>
+<body>
+  <header class="sticky top-0 z-50 shadow-sm bg-white/95 backdrop-blur">
+    <div class="text-center py-3 px-4 text-sm md:text-base font-semibold" style="background: linear-gradient(90deg, var(--gold), var(--blush-pink), var(--soft-lavender));">
+      <i class="fas fa-tag mr-2"></i>13% OFF this month on Backdrops and Balloon Garlands!
     </div>
 
-    <!-- Confirmation Modal -->
-    <div id="confirmation-modal" class="modal fixed inset-0 bg-black bg-opacity-50 z-[60] flex items-center justify-center p-4 invisible opacity-0">
-        <div class="modal-content bg-white rounded-lg shadow-2xl w-full max-w-lg p-8 transform scale-95 opacity-0">
-            <h2 class="text-3xl font-serif mb-4">Confirm Your Inquiry</h2>
-            <p class="text-gray-600 mb-6">Please review your items. Ready to send?</p>
-            <div id="confirmation-list" class="mb-6 border-t border-b py-4 max-h-48 overflow-y-auto">
-                <!-- Confirmation list injected here -->
-            </div>
-            <div class="flex justify-end space-x-4">
-                <button id="confirm-no-btn" class="btn-secondary">Cancel</button>
-                <button id="confirm-yes-btn" class="btn-primary">Send Inquiry</button>
-            </div>
+    <nav class="container mx-auto px-4 md:px-6 py-4 flex items-center justify-between gap-4">
+      <a href="#home" class="font-logo text-gold text-4xl md:text-5xl" aria-label="Tadriels Events Home">Tadriels Events</a>
+
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <div class="relative dropdown">
+          <a href="#rentals" class="nav-link">Rentals</a>
+          <div class="dropdown-menu absolute left-0 mt-4 bg-white rounded-md shadow-xl py-3 w-56 border border-slate-100" role="menu" aria-label="Rentals submenu">
+            <a href="#rentals-bounce" class="block px-4 py-2 hover:text-gold">Bounce Houses</a>
+            <a href="#rentals-flower" class="block px-4 py-2 hover:text-gold">Flower Walls</a>
+            <a href="#rentals-balloon" class="block px-4 py-2 hover:text-gold">Balloon Décor</a>
+            <a href="#rentals-kids" class="block px-4 py-2 hover:text-gold">Kids' Party Setups</a>
+            <a href="#rentals-wedding" class="block px-4 py-2 hover:text-gold">Wedding Décor</a>
+            <a href="#rentals-misc" class="block px-4 py-2 hover:text-gold">Miscellaneous Rentals</a>
+          </div>
         </div>
+        <a href="#gallery" class="nav-link">Gallery</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="#discount-code" class="nav-link">Discount Code</a>
+        <a href="#newsletter" class="nav-link">Newsletter</a>
+        <a href="#inquiry" class="nav-link">Inquiry</a>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <button id="cart-icon" class="relative hidden md:block" type="button" aria-label="Open cart">
+          <i class="fas fa-shopping-bag text-xl"></i>
+          <span id="cart-count" class="hidden">0</span>
+        </button>
+        <button id="mobile-menu-button" class="lg:hidden" type="button" aria-label="Open mobile menu" aria-expanded="false">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </nav>
+
+    <div id="mobile-menu" class="hidden lg:hidden px-4 pb-4 border-t bg-white">
+      <a href="#home" class="block py-2">Home</a>
+      <a href="#about" class="block py-2">About</a>
+      <div class="mobile-dropdown">
+        <button type="button" class="w-full py-2 flex justify-between items-center" aria-expanded="false">
+          Rentals <i class="fas fa-chevron-down text-sm"></i>
+        </button>
+        <div class="mobile-dropdown-menu pl-4">
+          <a href="#rentals-bounce" class="block py-2">Bounce Houses</a>
+          <a href="#rentals-flower" class="block py-2">Flower Walls</a>
+          <a href="#rentals-balloon" class="block py-2">Balloon Décor</a>
+          <a href="#rentals-kids" class="block py-2">Kids' Party Setups</a>
+          <a href="#rentals-wedding" class="block py-2">Wedding Décor</a>
+          <a href="#rentals-misc" class="block py-2">Miscellaneous Rentals</a>
+        </div>
+      </div>
+      <a href="#gallery" class="block py-2">Gallery</a>
+      <a href="#contact" class="block py-2">Contact</a>
+      <a href="#discount-code" class="block py-2">Discount Code</a>
+      <a href="#newsletter" class="block py-2">Newsletter</a>
+      <a href="#inquiry" class="block py-2">Inquiry</a>
+      <button id="mobile-cart-icon" class="w-full mt-4 py-2 flex items-center justify-center gap-2 border-t" type="button" aria-label="Open cart">
+        <i class="fas fa-shopping-bag"></i> Cart <span id="mobile-cart-count" class="hidden">0</span>
+      </button>
     </div>
+  </header>
 
-    <!-- Lightbox -->
-    <div id="lightbox" class="lightbox fixed inset-0 bg-black bg-opacity-80 z-[70] flex items-center justify-center p-4 invisible opacity-0">
-        <button id="close-lightbox-btn" class="absolute top-4 right-6 text-white text-4xl">&times;</button>
-        <img id="lightbox-img" src="" alt="Gallery image" class="max-w-full max-h-full" />
+  <main>
+    <section id="home" class="hero-section">
+      <div class="hero-slide active" style="background-image:url('https://images.pexels.com/photos/11474201/pexels-photo-11474201.jpeg');"></div>
+      <div class="hero-slide" style="backgroung-image:('cold-sparkler.jpeg');"></div>
+      <div class="hero-slide" style="background-image:url('https://images.pexels.com/photos/265940/pexels-photo-265940.jpeg');"></div>
+      <div class="hero-slide" style="background-image:url('https://images.pexels.com/photos/2306277/pexels-photo-2306277.jpeg');"></div>
+      <div class="hero-slide" style="background-image:url('https://images.pexels.com/photos/2306281/pexels-photo-2306281.jpeg');"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content container mx-auto px-4">
+        <h1 class="font-elegant text-5xl md:text-7xl mb-6">Celebrate in Style</h1>
+        <p class="text-lg md:text-2xl max-w-2xl mx-auto mb-8">Premium event rentals and planning for your unforgettable moments</p>
+        <a href="#checkout" class="btn-primary">Book Your Event</a>
+      </div>
+    </section>
+
+    <div id="page-content"></div>
+
+    <section class="py-20 bg-light-gray">
+      <div class="container mx-auto px-4 text-center fade-in-up">
+        <h2 class="section-title">Ready to Create Magic?</h2>
+        <p class="max-w-2xl mx-auto text-gray-600 mb-8">Let our team bring your vision to life with curated rentals and elegant event planning.</p>
+        <a href="#contact" class="btn-primary">Get Your Free Consultation</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-16">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div class="text-center">
+          <h3 class="font-logo text-gold text-4xl mb-2">Tadriels Events</h3>
+          <p class="text-gray-300">Premium Event Rentals & Planning</p>
+        </div>
+        <div class="text-center">
+          <p class="font-semibold mb-2">Quick Links</p>
+          <div class="space-y-1">
+            <p><a href="#home" class="hover:text-gold">Home</a></p>
+            <p><a href="#rentals" class="hover:text-gold">Rentals</a></p>
+            <p><a href="#gallery" class="hover:text-gold">Gallery</a></p>
+            <p><a href="#discount-code" class="hover:text-gold">Discount Code</a></p>
+            <p><a href="#newsletter" class="hover:text-gold">Newsletter</a></p>
+          </div>
+        </div>
+        <div class="text-center">
+          <p class="font-semibold mb-2">Contact</p>
+          <p><a href="mailto:tadriels24@gmail.com" class="hover:text-gold">tadriels24@gmail.com</a></p>
+          <p><a href="tel:+13653840161" class="hover:text-gold">(365) 384-0161</a></p>
+          <div class="mt-4 flex justify-center gap-4 text-lg">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="text-center text-gray-400 text-sm pt-6 border-t border-white/10">
+        <p>&copy; 2026 Tadriels Event Planner & Rentals. All Rights Reserved.</p>
+      </div>
     </div>
+  </footer>
 
-    <!-- Toast -->
-    <div id="toast" class="fixed bottom-5 right-5 bg-charcoal-gray text-white py-3 px-6 rounded-lg shadow-lg opacity-0 transition-opacity duration-300 z-[80]">
-        Item added to cart!
+  <div id="cart-sidebar" class="drawer fixed inset-0 bg-black/50 z-50 invisible opacity-0" aria-hidden="true">
+    <div id="cart-sidebar-content" class="drawer-panel absolute top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col translate-x-full">
+      <div class="flex justify-between items-center p-6 border-b">
+        <h2 class="text-2xl font-serif">Your Cart</h2>
+        <button id="close-cart-btn" class="text-3xl" type="button" aria-label="Close cart">&times;</button>
+      </div>
+      <div id="cart-items-container" class="flex-grow p-6 overflow-y-auto"></div>
+      <div class="p-6 border-t">
+        <div id="subtotal" class="text-right text-lg font-serif mb-4"></div>
+        <button id="checkout-btn" type="button" class="w-full btn-primary">Proceed to Checkout</button>
+      </div>
     </div>
+  </div>
 
-    <script>
-        // EmailJS Config
-        const SERVICE_ID = 'service_bzuwfpo';
-        const PUBLIC_KEY = '7jYqEhkLxexQnPO3z';
-        const INQUIRY_TEMPLATE_ID = 'template_pzsdi9s';
+  <div id="confirmation-modal" class="modal fixed inset-0 bg-black/50 z-[60] flex items-center justify-center p-4 invisible opacity-0" aria-hidden="true">
+    <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl p-6 md:p-8 scale-95 opacity-0" id="modal-card">
+      <h2 class="text-3xl font-serif mb-4">Confirm Your Inquiry</h2>
+      <p id="confirmation-summary" class="text-gray-600 mb-6">Please review your items before sending.</p>
+      <div id="confirmation-list" class="mb-6 border-y py-4 max-h-60 overflow-y-auto"></div>
+      <div class="flex justify-end gap-3">
+        <button id="confirm-no-btn" type="button" class="btn-secondary">Cancel</button>
+        <button id="confirm-yes-btn" type="button" class="btn-primary">Send Inquiry</button>
+      </div>
+    </div>
+  </div>
 
-        function createRentalItem(name, imageUrl, dataItem, price) {
-            return `
-                <div class="rental-card fade-in-up">
-                    <img src="${imageUrl}" alt="${name}" />
-                    <div class="rental-card-content">
-                        <h3>${name}</h3>
-                        <p>$${price.toFixed(2)}</p>
-                        <button class="add-to-cart-btn btn-primary text-sm" data-item="${dataItem}" data-price="${price}">Add to Cart</button>
-                    </div>
-                </div>
-            `;
+  <div id="lightbox" class="lightbox fixed inset-0 bg-black/80 z-[70] flex items-center justify-center p-4 invisible opacity-0" aria-hidden="true">
+    <button id="close-lightbox-btn" class="absolute top-4 right-6 text-white text-4xl" type="button" aria-label="Close image">&times;</button>
+    <img id="lightbox-img" src="" alt="Gallery image" class="max-w-full max-h-full rounded-lg shadow-2xl" />
+  </div>
+
+  <div id="toast" class="fixed bottom-5 right-5 bg-charcoal-gray text-white py-3 px-6 rounded-lg shadow-lg opacity-0 transition-opacity duration-300 z-[80]">Item added to cart!</div>
+
+  <script>
+    (() => {
+      const SERVICE_ID = 'service_bzuwfpo';
+      const PUBLIC_KEY = '7jYqEhkLxexQnPO3z';
+      const INQUIRY_TEMPLATE_ID = 'template_pzsdi9s';
+      const DISCOUNT_CODE = 'MONTH40';
+      const NEWSLETTER_KEY = 'tadriels_newsletter_claimed';
+      const ROUTES = ['home','about','rentals','rentals-bounce','rentals-flower','rentals-balloon','rentals-kids','rentals-wedding','rentals-misc','gallery','contact','discount-code','newsletter','inquiry','checkout'];
+      const ELIGIBLE = ['backdrop','backdrops','flower wall','flower walls','balloon garland','balloon garlands'];
+
+      const $ = (s, r = document) => r.querySelector(s);
+      const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
+      let cart = [];
+      let heroTimer = null;
+      let observer = null;
+      let currentRoute = 'home';
+      let pendingInquiry = null;
+      let newsletterLocked = false;
+      let submittingCheckout = false;
+      let submittingStandalone = false;
+      let newsletterSubmitting = false;
+
+      try {
+        const raw = JSON.parse(localStorage.getItem('tadrielsCart') || '[]');
+        cart = Array.isArray(raw)
+          ? raw.filter(item => item && typeof item.name === 'string' && Number(item.price) >= 0).map(item => ({
+              name: item.name,
+              price: Number(item.price) || 0,
+              quantity: Math.max(1, Number(item.quantity) || 1)
+            }))
+          : [];
+      } catch {
+        cart = [];
+      }
+      try { newsletterLocked = localStorage.getItem(NEWSLETTER_KEY) === 'true'; } catch {}
+
+      const escapeHTML = (v) => String(v ?? '').replace(/[&<>"']/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m]));
+      const money = (n) => `CAD ${Number.isFinite(Number(n)) ? Number(n).toFixed(2) : '0.00'}`;
+      const validRoute = (route) => ROUTES.includes(route) ? route : 'home';
+      const getRoute = () => validRoute((location.hash || '#home').slice(1));
+      const saveCart = () => { try { localStorage.setItem('tadrielsCart', JSON.stringify(cart)); } catch {} };
+
+      const subtotal = (items = cart) => items.reduce((a, i) => a + (Number(i.price) || 0) * Math.max(1, Number(i.quantity) || 1), 0);
+      const eligibleDiscount = (items = cart, code = '') => {
+        if (String(code).trim().toUpperCase() !== DISCOUNT_CODE) return 0;
+        return items.reduce((sum, item) => {
+          const name = String(item.name || '').toLowerCase();
+          if (!ELIGIBLE.some(term => name.includes(term))) return sum;
+          return sum + ((Number(item.price) || 0) * Math.max(1, Number(item.quantity) || 1) * 0.4);
+        }, 0);
+      };
+      const totals = (items = cart, code = '') => {
+        const sub = subtotal(items);
+        const disc = eligibleDiscount(items, code);
+        return { sub, disc, total: Math.max(sub - disc, 0) };
+      };
+
+      function updateCounts() {
+        const count = cart.reduce((a, i) => a + Math.max(1, Number(i.quantity) || 1), 0);
+        ['#cart-count', '#mobile-cart-count'].forEach(sel => {
+          const el = $(sel);
+          if (!el) return;
+          if (count > 0) { el.textContent = count; el.classList.remove('hidden'); }
+          else { el.classList.add('hidden'); }
+        });
+      }
+
+      function openCart() {
+        const overlay = $('#cart-sidebar'), panel = $('#cart-sidebar-content');
+        if (!overlay || !panel) return;
+        renderCart();
+        overlay.classList.remove('invisible', 'opacity-0');
+        panel.classList.remove('translate-x-full');
+        overlay.setAttribute('aria-hidden', 'false');
+      }
+      function closeCart() {
+        const overlay = $('#cart-sidebar'), panel = $('#cart-sidebar-content');
+        if (!overlay || !panel) return;
+        panel.classList.add('translate-x-full');
+        overlay.classList.add('opacity-0');
+        setTimeout(() => overlay.classList.add('invisible'), 220);
+        overlay.setAttribute('aria-hidden', 'true');
+      }
+
+      function showToast(msg) {
+        const t = $('#toast');
+        if (!t) return;
+        t.textContent = msg;
+        t.classList.remove('opacity-0');
+        setTimeout(() => t.classList.add('opacity-0'), 1500);
+      }
+
+      function addToCart(name, price) {
+        const p = Math.max(0, Number(price) || 0);
+        if (!name || p <= 0) return;
+        const item = cart.find(x => x.name === name);
+        if (item) item.quantity = Math.max(1, Number(item.quantity) || 1) + 1;
+        else cart.push({ name: String(name), price: p, quantity: 1 });
+        saveCart(); updateCounts(); renderCart(); renderCheckout();
+        showToast(`${name} added to cart`);
+      }
+      function removeFromCart(name) {
+        cart = cart.filter(x => x.name !== name);
+        saveCart(); updateCounts(); renderCart(); renderCheckout();
+      }
+      function setQty(name, qty) {
+        const n = Math.max(1, Number(qty) || 1);
+        const item = cart.find(x => x.name === name);
+        if (!item) return;
+        item.quantity = n;
+        saveCart(); updateCounts(); renderCart(); renderCheckout();
+      }
+
+      function renderCart() {
+        const wrap = $('#cart-items-container'), sub = $('#subtotal'), checkoutBtn = $('#checkout-btn');
+        if (!wrap || !sub || !checkoutBtn) return;
+        if (!cart.length) {
+          wrap.innerHTML = '<p class="text-gray-500">Your cart is empty.</p>';
+          sub.innerHTML = '';
+          checkoutBtn.disabled = true;
+          checkoutBtn.classList.add('opacity-50', 'cursor-not-allowed');
+          return;
+        }
+        checkoutBtn.disabled = false;
+        checkoutBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        const code = ($('#checkout-discount-code')?.value || '').trim().toUpperCase();
+        const { sub: st, disc, total } = totals(cart, code);
+        wrap.innerHTML = cart.map(item => `
+          <div class="flex justify-between items-center gap-3 border-b py-4">
+            <div>
+              <p class="font-semibold">${escapeHTML(item.name)}</p>
+              <p class="text-sm text-gray-500">${money(item.price)} each</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <input type="number" min="1" value="${item.quantity}" class="w-16 border rounded p-1 focus-ring cart-qty" data-name="${escapeHTML(item.name)}" aria-label="Quantity for ${escapeHTML(item.name)}">
+              <button type="button" class="text-red-500 font-bold cart-remove" data-name="${escapeHTML(item.name)}" aria-label="Remove ${escapeHTML(item.name)}">×</button>
+            </div>
+          </div>
+        `).join('');
+        sub.innerHTML = `
+          <div class="space-y-1 text-sm">
+            <div class="flex justify-between"><span>Subtotal</span><span>${money(st)}</span></div>
+            <div class="flex justify-between"><span>Discount</span><span>${disc > 0 ? `-${money(disc)}` : money(0)}</span></div>
+            <div class="flex justify-between font-bold pt-2 border-t"><span>Total</span><span>${money(total)}</span></div>
+          </div>`;
+      }
+
+      function renderCheckout() {
+        const summary = $('#checkout-summary');
+        const list = $('#services-booked-list');
+        const checkoutForm = $('#checkout-form');
+        if (!summary || !list || !checkoutForm) return;
+        const code = ($('#checkout-discount-code')?.value || '').trim().toUpperCase();
+        const { sub, disc, total } = totals(cart, code);
+        list.innerHTML = cart.length
+          ? cart.map(i => `<p class="text-gray-700"><strong>${i.quantity}x</strong> ${escapeHTML(i.name)} - ${money((Number(i.price)||0) * (Number(i.quantity)||1))}</p>`).join('')
+          : '<p class="text-gray-500">Your cart is empty.</p>';
+        summary.innerHTML = `
+          <div class="space-y-1 text-sm">
+            <div class="flex justify-between"><span>Subtotal</span><span>${money(sub)}</span></div>
+            <div class="flex justify-between"><span>Eligible discount</span><span>${disc > 0 ? `-${money(disc)}` : money(0)}</span></div>
+            <div class="flex justify-between font-bold pt-2 border-t"><span>Total</span><span>${money(total)}</span></div>
+            <p class="pt-2 text-xs text-gray-500">${code === DISCOUNT_CODE ? 'MONTH40 recognized.' : 'Enter MONTH40 to apply eligible discounts.'}</p>
+          </div>`;
+      }
+
+      function startHero() {
+        stopHero();
+        const slides = $$('.hero-slide');
+        if (!slides.length) return;
+        let idx = 0;
+        slides.forEach(s => s.classList.remove('active'));
+        slides[0].classList.add('active');
+        heroTimer = setInterval(() => {
+          slides[idx].classList.remove('active');
+          idx = (idx + 1) % slides.length;
+          slides[idx].classList.add('active');
+        }, 5000);
+      }
+      function stopHero() {
+        if (heroTimer) clearInterval(heroTimer);
+        heroTimer = null;
+      }
+
+      function observeFadeIn() {
+        if (observer) {
+          $$('.fade-in-up:not(.visible)').forEach(el => observer.observe(el));
+          return;
+        }
+        if (!('IntersectionObserver' in window)) {
+          $$('.fade-in-up').forEach(el => el.classList.add('visible'));
+          return;
+        }
+        observer = new IntersectionObserver(entries => {
+          entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.12 });
+        $$('.fade-in-up').forEach(el => observer.observe(el));
+      }
+
+      function openLightbox(src) {
+        const box = $('#lightbox'), img = $('#lightbox-img');
+        if (!box || !img) return;
+        img.src = src;
+        box.classList.remove('invisible', 'opacity-0');
+        box.setAttribute('aria-hidden', 'false');
+      }
+      function closeLightbox() {
+        const box = $('#lightbox');
+        if (!box) return;
+        box.classList.add('invisible', 'opacity-0');
+        box.setAttribute('aria-hidden', 'true');
+      }
+
+      const imgFallback = "this.src='https://placehold.co/600x400/F5F5F5/2C2C2C?text=Image+Unavailable'";
+
+      const rentalCard = (name, img, price) => `
+        <div class="rental-card fade-in-up">
+          <img src="${img}" alt="${escapeHTML(name)}" onerror="${imgFallback}">
+          <div class="p-5 text-center">
+            <h3 class="text-xl font-serif mb-1">${escapeHTML(name)}</h3>
+            <p class="text-gold font-semibold mb-4">${money(price)}</p>
+            <button type="button" class="btn-primary add-to-cart" data-name="${escapeHTML(name)}" data-price="${price}" aria-label="Add ${escapeHTML(name)} to cart">Add to Cart</button>
+          </div>
+        </div>`;
+
+      const pages = {
+        about: `<section id="about" class="py-20 bg-light-gray"><div class="container mx-auto px-4"><h2 class="section-title fade-in-up">Our Story</h2><div class="max-w-3xl mx-auto text-center fade-in-up"><p class="text-gray-600 text-lg mb-4">Born from a passion for unforgettable celebrations, Tadriels Events transforms special moments into magical experiences.</p><p class="text-gray-600 text-lg">From intimate gatherings to grand celebrations, our team ensures every detail feels elegant and seamless.</p></div></div></section>`,
+        rentals: `<section id="rentals" class="py-20"><div class="container mx-auto px-4"><h2 class="section-title fade-in-up">Our Rentals</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"><a href="#rentals-bounce" class="rental-card fade-in-up"><img src="https://placehold.co/600x400/F8C8DC/2C2C2C?text=Bounce+Houses" alt="Bounce Houses category"><div class="p-5 text-center"><h3 class="text-xl font-serif">Bounce Houses</h3><p class="text-gray-500">Fun for all ages</p></div></a><a href="#rentals-flower" class="rental-card fade-in-up"><img src="https://placehold.co/600x400/C7B7FF/2C2C2C?text=Flower+Walls" alt="Flower Walls category"><div class="p-5 text-center"><h3 class="text-xl font-serif">Flower Walls</h3><p class="text-gray-500">Elegant photo backdrops</p></div></a><a href="#rentals-balloon" class="rental-card fade-in-up"><img src="https://placehold.co/600x400/D4AF37/2C2C2C?text=Balloon+Decor" alt="Balloon Decor category"><div class="p-5 text-center"><h3 class="text-xl font-serif">Balloon Décor</h3><p class="text-gray-500">Custom balloon arrangements</p></div></a><a href="#rentals-kids" class="rental-card fade-in-up"><img src="https://placehold.co/600x400/F8C8DC/2C2C2C?text=Kids+Party" alt="Kids party setups category"><div class="p-5 text-center"><h3 class="text-xl font-serif">Kids' Party Setups</h3><p class="text-gray-500">Everything for celebration</p></div></a><a href="#rentals-wedding" class="rental-card fade-in-up"><img src="https://placehold.co/600x400/C7B7FF/2C2C2C?text=Wedding+Decor" alt="Wedding decor category"><div class="p-5 text-center"><h3 class="text-xl font-serif">Wedding Décor</h3><p class="text-gray-500">Luxurious event styling</p></div></a><a href="#rentals-misc" class="rental-card fade-in-up"><img src="https://placehold.co/600x400/D4AF37/2C2C2C?text=Misc" alt="Miscellaneous rentals category"><div class="p-5 text-center"><h3 class="text-xl font-serif">Miscellaneous Rentals</h3><p class="text-gray-500">More premium options</p></div></a></div></div></section>`,
+        gallery: `<section id="gallery" class="py-20 bg-light-gray"><div class="container mx-auto px-4"><h2 class="section-title fade-in-up">Gallery</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"><img class="gallery-img fade-in-up rounded-lg shadow-lg cursor-pointer object-cover w-full h-64" src="https://images.pexels.com/photos/2788492/pexels-photo-2788492.jpeg" alt="Elegant event table setup"><img class="gallery-img fade-in-up rounded-lg shadow-lg cursor-pointer object-cover w-full h-64" src="https://images.pexels.com/photos/1045541/pexels-photo-1045541.jpeg" alt="Stylish event decor setup"><img class="gallery-img fade-in-up rounded-lg shadow-lg cursor-pointer object-cover w-full h-64" src="https://images.pexels.com/photos/2062883/pexels-photo-2062883.jpeg" alt="Outdoor event celebration"><img class="gallery-img fade-in-up rounded-lg shadow-lg cursor-pointer object-cover w-full h-64" src="valentines.jpg" alt="Valentine's event decor" onerror="${imgFallback}"><img class="gallery-img fade-in-up rounded-lg shadow-lg cursor-pointer object-cover w-full h-64" src="africanday.png" alt="African Day" onerror="${imgFallback}"><img class="gallery-img fade-in-up rounded-lg shadow-lg cursor-pointer object-cover w-full h-64" src="mrose2.png" alt="Rose@60" onerror="${imgFallback}"><img class="gallery-img fade-in-up rounded-lg shadow-lg cursor-pointer object-cover w-full h-64" src="mrose.png" alt="Rose@60" onerror="${imgFallback}"><img class="gallery-img fade-in-up rounded-lg shadow-lg cursor-pointer object-cover w-full h-64" src="360-booth.jpg" alt="360 booth rental" onerror="${imgFallback}"><img class="gallery-img fade-in-up rounded-lg shadow-lg cursor-pointer object-cover w-full h-64" src="dry-ice-clouds-1.jpg" alt="Dry ice clouds effect" onerror="${imgFallback}"></div></div></section>`,
+        contact: `<section id="contact" class="py-20"><div class="container mx-auto px-4"><h2 class="section-title fade-in-up">Get In Touch</h2><div class="max-w-2xl mx-auto bg-light-gray p-8 rounded-xl fade-in-up"><p class="text-center text-gray-600 mb-8">Ready to plan your next event? Reach out to our team today.</p><div class="space-y-6 text-center"><div><i class="fas fa-envelope text-2xl text-gold mb-2"></i><p><a class="text-gold hover:underline" href="mailto:tadriels24@gmail.com">tadriels24@gmail.com</a></p></div><div><i class="fas fa-phone text-2xl text-gold mb-2"></i><p><a class="text-gold hover:underline" href="tel:+13653840161">(365) 384-0161</a></p></div></div></div></div></section>`,
+        discount: `<section id="discount-code" class="py-20"><div class="container mx-auto px-4"><h2 class="section-title fade-in-up">Your Discount Code</h2><div class="max-w-2xl mx-auto text-center bg-light-gray p-8 rounded-2xl shadow-md fade-in-up"><p class="text-gray-600 mb-4">Use this code at checkout or in your inquiry for 40% off eligible backdrops and balloon garlands.</p><div class="inline-block bg-white border-2 border-gold rounded-2xl px-8 py-4 mb-4"><p class="text-xs uppercase tracking-widest text-gray-500">Promo Code</p><p class="text-4xl font-bold text-gold">MONTH40</p></div><p class="text-sm text-gray-500">Valid this month only.</p></div></div></section>`,
+        newsletter: `<section id="newsletter" class="py-20"><div class="container mx-auto px-4"><h2 class="section-title fade-in-up">Newsletter</h2><div class="max-w-2xl mx-auto bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden fade-in-up"><div class="p-6 text-center text-white" style="background: linear-gradient(90deg, #4f46e5, #7c3aed);"><span class="bg-white/20 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-white/10">Limited Time Member Perk</span><h3 class="text-4xl font-black mt-3">Save <span>40%</span> This Month</h3><p class="text-indigo-100 text-sm mt-1">Exclusive rates on premium backdrops & balloon garlands.</p></div><div class="p-8"><form id="newsletter-form" class="space-y-4" novalidate><div><label for="newsletter-name" class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">First Name</label><input id="newsletter-name" name="newsletter_name" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus-ring" required></div><div><label for="newsletter-email" class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Email Address</label><input id="newsletter-email" type="email" name="newsletter_email" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus-ring" required></div><button type="submit" id="newsletter-btn" class="w-full py-4 px-4 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl">Claim My Discount Code</button></form><div id="newsletter-status" class="mt-4 p-4 rounded-xl text-sm font-medium border hidden"></div></div></div></div></section>`,
+        inquiry: `<section id="inquiry" class="py-20 bg-light-gray"><div class="container mx-auto px-4"><h2 class="section-title fade-in-up">Event Inquiry</h2><p class="text-center text-gray-600 text-lg mb-10 max-w-2xl mx-auto">Tell us about your event and what you are looking for. This inquiry form is separate from checkout.</p><div class="inquiry-form-card max-w-4xl mx-auto p-6 md:p-10 fade-in-up"><form id="standalone-inquiry-form" class="space-y-6" novalidate><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div><label class="block text-sm font-medium mb-1">Event Type</label><input name="event_type" class="w-full p-3 border rounded-lg focus-ring" required></div><div><label class="block text-sm font-medium mb-1">Guest Count</label><input name="guest_count" type="number" class="w-full p-3 border rounded-lg focus-ring" required></div><div><label class="block text-sm font-medium mb-1">Preferred Date</label><input name="preferred_date" type="date" class="w-full p-3 border rounded-lg focus-ring" required></div><div><label class="block text-sm font-medium mb-1">Preferred Time</label><input name="preferred_time" type="time" class="w-full p-3 border rounded-lg focus-ring"></div><div class="md:col-span-2"><label class="block text-sm font-medium mb-1">Venue</label><input name="venue" class="w-full p-3 border rounded-lg focus-ring"></div><div class="md:col-span-2"><label class="block text-sm font-medium mb-1">Services Requested</label><div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm"><label><input type="checkbox" name="services" value="Backdrops" class="mr-2">Backdrops</label><label><input type="checkbox" name="services" value="Balloon Garlands" class="mr-2">Balloon Garlands</label><label><input type="checkbox" name="services" value="Bounce Houses" class="mr-2">Bounce Houses</label><label><input type="checkbox" name="services" value="Wedding Decor" class="mr-2">Wedding Décor</label></div></div><div class="md:col-span-2"><label class="block text-sm font-medium mb-1">Discount Code</label><input name="discount_code" value="MONTH40" class="w-full p-3 border rounded-lg focus-ring"></div><div class="md:col-span-2"><label class="block text-sm font-medium mb-1">Additional Message</label><textarea name="inquiry_message" rows="4" class="w-full p-3 border rounded-lg focus-ring"></textarea></div><div><label class="block text-sm font-medium mb-1">Full Name</label><input name="inquiry_name" class="w-full p-3 border rounded-lg focus-ring" required></div><div><label class="block text-sm font-medium mb-1">Email</label><input name="inquiry_email" type="email" class="w-full p-3 border rounded-lg focus-ring" required></div><div><label class="block text-sm font-medium mb-1">Phone</label><input name="inquiry_phone" type="tel" class="w-full p-3 border rounded-lg focus-ring" required></div><div><label class="block text-sm font-medium mb-1">Preferred Contact Method</label><select name="contact_method" class="w-full p-3 border rounded-lg focus-ring"><option>Email</option><option>Phone</option><option>Text</option></select></div></div><div class="flex justify-center pt-2"><button type="submit" class="btn-primary"><i class="fas fa-paper-plane mr-2"></i> Send Event Inquiry</button></div><div id="standalone-inquiry-status" class="text-center text-sm"></div></form><div id="standalone-inquiry-success" class="hidden text-center py-8"><i class="fas fa-circle-check text-5xl text-green-600 mb-4"></i><h3 class="text-3xl font-serif mb-3">Inquiry Received!</h3><p class="text-gray-600 mb-6">Thank you! We've received your event inquiry and will get back to you shortly.</p><a href="#home" class="text-gold hover:underline">← Return to Home</a></div></div></div></section>`,
+        checkout: `<section id="checkout" class="py-20 bg-light-gray"><div class="container mx-auto px-4"><h2 class="section-title fade-in-up">Checkout</h2><div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-2xl shadow-md fade-in-up"><div id="services-booked-list" class="mb-6"></div><div id="checkout-summary" class="mb-8"></div><form id="checkout-form" class="space-y-6" novalidate><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div><label class="block text-sm font-medium mb-1">Celebrant / Event Name</label><input name="celebrant_name" class="w-full p-3 border rounded-lg focus-ring" required></div><div><label class="block text-sm font-medium mb-1">Event Date</label><input name="event_date" type="date" class="w-full p-3 border rounded-lg focus-ring" required></div><div><label class="block text-sm font-medium mb-1">Event Time</label><input name="event_time" type="time" class="w-full p-3 border rounded-lg focus-ring" required></div><div><label class="block text-sm font-medium mb-1">Event Type</label><input name="event_type" class="w-full p-3 border rounded-lg focus-ring" required></div><div><label class="block text-sm font-medium mb-1">Guest Count</label><input name="guest_count" type="number" class="w-full p-3 border rounded-lg focus-ring" required></div><div><label class="block text-sm font-medium mb-1">Venue / Location</label><input name="venue" class="w-full p-3 border rounded-lg focus-ring" required></div><div><label class="block text-sm font-medium mb-1">Customer Name</label><input name="customer_name" class="w-full p-3 border rounded-lg focus-ring" required></div><div><label class="block text-sm font-medium mb-1">Customer Email</label><input name="customer_email" type="email" class="w-full p-3 border rounded-lg focus-ring" required></div><div><label class="block text-sm font-medium mb-1">Customer Phone</label><input name="customer_phone" type="tel" class="w-full p-3 border rounded-lg focus-ring" required></div><div><label class="block text-sm font-medium mb-1">Preferred Contact Method</label><select name="preferred_contact_method" class="w-full p-3 border rounded-lg focus-ring"><option>Email</option><option>Phone</option><option>Text</option></select></div><div class="md:col-span-2"><label class="block text-sm font-medium mb-1">Discount Code</label><input id="checkout-discount-code" name="discount_code" value="MONTH40" class="w-full p-3 border rounded-lg focus-ring"></div><div class="md:col-span-2"><label class="block text-sm font-medium mb-1">Additional Details / Special Requests</label><textarea name="message" rows="4" class="w-full p-3 border rounded-lg focus-ring"></textarea></div></div><div class="flex justify-center pt-2"><button type="submit" class="btn-primary">Review Inquiry</button></div></form></div><div id="success-message" class="hidden max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-md text-center"><h3 class="text-3xl font-serif text-green-600 mb-4">Thank You!</h3><p class="text-gray-600 mb-6">Your inquiry has been sent successfully.</p><a href="#home" class="text-gold hover:underline">← Return to Home</a></div></div></section>`
+      };
+
+      const rentals = {
+        'rentals-bounce': `<section class="py-20"><div class="container mx-auto px-4"><h2 class="section-title fade-in-up">Bounce Houses</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">${rentalCard('Classic Rainbow Bounce House', 'https://placehold.co/600x400/F8C8DC/2C2C2C?text=Rainbow+Bounce', 150)}${rentalCard('Princess Bounce House', 'https://placehold.co/600x400/F8C8DC/2C2C2C?text=Princess+Bounce', 175)}${rentalCard('Sports Bounce House', 'https://placehold.co/600x400/F8C8DC/2C2C2C?text=Sports+Bounce', 175)}</div></div></section>`,
+        'rentals-flower': `<section class="py-20 bg-light-gray"><div class="container mx-auto px-4"><h2 class="section-title fade-in-up">Flower Walls</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">${rentalCard('Blush Pink Flower Wall', 'https://placehold.co/600x400/F8C8DC/2C2C2C?text=Blush+Wall', 250)}${rentalCard('Lavender Dream Wall', 'https://placehold.co/600x400/C7B7FF/2C2C2C?text=Lavender+Wall', 250)}${rentalCard('Gold Glitter Wall', 'https://placehold.co/600x400/D4AF37/2C2C2C?text=Gold+Wall', 300)}</div></div></section>`,
+        'rentals-balloon': `<section class="py-20"><div class="container mx-auto px-4"><h2 class="section-title fade-in-up">Balloon Décor</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">${rentalCard('Balloon Garland Arch', 'https://placehold.co/600x400/D4AF37/2C2C2C?text=Garland', 200)}${rentalCard('Organic Balloon Collection', 'https://placehold.co/600x400/D4AF37/2C2C2C?text=Organic', 300)}${rentalCard('Helium Balloon Bouquet', 'https://placehold.co/600x400/D4AF37/2C2C2C?text=Bouquet', 100)}</div></div></section>`,
+        'rentals-kids': `<section class="py-20 bg-light-gray"><div class="container mx-auto px-4"><h2 class="section-title fade-in-up">Kids' Party Setups</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">${rentalCard('Kids Party Table & Chairs', 'https://placehold.co/600x400/F8C8DC/2C2C2C?text=Tables', 75)}${rentalCard('Character Cutout Pack', 'https://placehold.co/600x400/F8C8DC/2C2C2C?text=Cutouts', 60)}${rentalCard('Party Banner Collection', 'https://placehold.co/600x400/F8C8DC/2C2C2C?text=Banners', 40)}</div></div></section>`,
+        'rentals-wedding': `<section class="py-20"><div class="container mx-auto px-4"><h2 class="section-title fade-in-up">Wedding Décor</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">${rentalCard('Elegant Table Linens', 'https://placehold.co/600x400/C7B7FF/2C2C2C?text=Linens', 25)}${rentalCard('Chiavari Chairs', 'https://placehold.co/600x400/C7B7FF/2C2C2C?text=Chairs', 8)}${rentalCard('Wedding Arch', 'https://placehold.co/600x400/C7B7FF/2C2C2C?text=Arch', 400)}</div></div></section>`,
+        'rentals-misc': `<section class="py-20 bg-light-gray"><div class="container mx-auto px-4"><h2 class="section-title fade-in-up">Miscellaneous Rentals</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">${rentalCard('Cold Sparklers', 'cold-sparkler.jpeg', 150)}${rentalCard('Dry Ice Fog Machine', 'dry-ice-clouds-1.jpg', 400)}${rentalCard('360° Video Booth', '360-booth.jpg', 500)}${rentalCard('Round Banquet Tables', 'https://placehold.co/600x400/D4AF37/2C2C2C?text=Tables', 15)}${rentalCard('Gold Chiavari Chairs', 'https://placehold.co/600x400/D4AF37/2C2C2C?text=Chairs', 8)}</div></div></section>`
+      };
+
+      function setActive(hash){
+        $$('.nav-link').forEach(a => a.classList.toggle('active', a.getAttribute('href') === hash));
+      }
+
+      function closeMobileMenu(){
+        const menu = $('#mobile-menu');
+        const btn = $('#mobile-menu-button');
+        const dd = $('.mobile-dropdown');
+        if (menu) menu.classList.add('hidden');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+        if (dd) {
+          dd.classList.remove('open');
+          dd.querySelector('button')?.setAttribute('aria-expanded', 'false');
+        }
+      }
+
+      function setValidationState(input, ok){
+        if (!input) return;
+        input.classList.toggle('input-error', !ok);
+      }
+
+      function showStatus(el, msg, type){
+        if (!el) return;
+        el.classList.remove('hidden','status-success','status-error','status-info');
+        el.classList.add(type === 'success' ? 'status-success' : type === 'error' ? 'status-error' : 'status-info');
+        el.textContent = msg;
+      }
+
+      function bindGlobal(){
+        if (document.body.dataset.bound === 'true') return;
+        document.body.dataset.bound = 'true';
+
+        document.addEventListener('click', (e) => {
+          const nav = e.target.closest('a[href^="#"]');
+          if (nav) {
+            const hash = nav.getAttribute('href');
+            if (hash && ROUTES.includes(hash.slice(1))) {
+              e.preventDefault();
+              location.hash = hash;
+              closeMobileMenu();
+            }
+          }
+
+          const add = e.target.closest('.add-to-cart');
+          if (add) { addToCart(add.dataset.name, add.dataset.price); return; }
+
+          const remove = e.target.closest('.cart-remove');
+          if (remove) { removeFromCart(remove.dataset.name); return; }
+
+          const qty = e.target.closest('.cart-qty');
+          if (qty) { setQty(qty.dataset.name, qty.value); return; }
+
+          const img = e.target.closest('.gallery-img');
+          if (img) openLightbox(img.src);
+        });
+
+        $('#mobile-menu-button')?.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const menu = $('#mobile-menu');
+          if (!menu) return;
+          const hidden = menu.classList.toggle('hidden');
+          e.currentTarget.setAttribute('aria-expanded', String(!hidden));
+        });
+
+        $('.mobile-dropdown > button')?.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const p = $('.mobile-dropdown');
+          p?.classList.toggle('open');
+          e.currentTarget.setAttribute('aria-expanded', p?.classList.contains('open') ? 'true' : 'false');
+        });
+
+        $('#cart-icon')?.addEventListener('click', openCart);
+        $('#mobile-cart-icon')?.addEventListener('click', openCart);
+        $('#close-cart-btn')?.addEventListener('click', closeCart);
+        $('#cart-sidebar')?.addEventListener('click', (e) => { if (e.target.id === 'cart-sidebar') closeCart(); });
+
+        $('#checkout-btn')?.addEventListener('click', () => {
+          closeCart();
+          location.hash = '#checkout';
+        });
+
+        $('#close-lightbox-btn')?.addEventListener('click', closeLightbox);
+        $('#lightbox')?.addEventListener('click', (e) => { if (e.target.id === 'lightbox') closeLightbox(); });
+
+        $('#confirm-no-btn')?.addEventListener('click', () => $('#confirmation-modal')?.classList.add('invisible','opacity-0'));
+        $('#confirmation-modal')?.addEventListener('click', (e) => { if (e.target.id === 'confirmation-modal') $('#confirmation-modal')?.classList.add('invisible','opacity-0'); });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            closeLightbox();
+            closeCart();
+            $('#confirmation-modal')?.classList.add('invisible','opacity-0');
+          }
+        });
+
+        window.addEventListener('hashchange', () => renderRoute(getRoute()));
+      }
+
+      function bindPageForms(){
+        const newsletter = $('#newsletter-form');
+        if (newsletter && !newsletter.dataset.bound) {
+          newsletter.dataset.bound = 'true';
+          newsletter.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const status = $('#newsletter-status');
+            const btn = $('#newsletter-btn');
+            const name = $('#newsletter-name')?.value.trim();
+            const email = $('#newsletter-email')?.value.trim();
+            if (!status || !btn) return;
+
+            setValidationState($('#newsletter-name'), !!name);
+            setValidationState($('#newsletter-email'), /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
+
+            if (!name) return showStatus(status, 'Please enter your first name.', 'error');
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showStatus(status, 'Please enter a valid email address.', 'error');
+            if (newsletterLocked) return showStatus(status, 'This browser has already claimed MONTH13.', 'info');
+            if (newsletterSubmitting) return;
+
+            newsletterSubmitting = true;
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+            showStatus(status, 'Sending your code...', 'info');
+
+            try {
+              await emailjs.send(SERVICE_ID, INQUIRY_TEMPLATE_ID, {
+                subscriber_name: name,
+                email_address: email,
+                discount_amount: 13,
+                discount_code: DISCOUNT_CODE
+              });
+              newsletterLocked = true;
+              try { localStorage.setItem(NEWSLETTER_KEY, 'true'); } catch {}
+              showStatus(status, `Success! Your MONTH13 code has been sent to ${email}.`, 'success');
+              newsletter.reset();
+            } catch {
+              showStatus(status, 'We could not send your code right now. Please try again.', 'error');
+            } finally {
+              newsletterSubmitting = false;
+              btn.disabled = false;
+              btn.textContent = 'Claim My Discount Code';
+            }
+          });
         }
 
-        const pages = {
-            about: `
-                <section id="about" class="py-20 bg-light-gray">
-                    <div class="container mx-auto px-4">
-                        <h2 class="section-title fade-in-up">Our Story</h2>
-                        <div class="max-w-3xl mx-auto text-center fade-in-up">
-                            <p class="text-gray-600 text-lg mb-4">Born from a passion for creating unforgettable celebrations, Tadriels Events is dedicated to transforming your special moments into magical experiences. With years of expertise and a curated collection of premium rentals, we bring elegance and joy to every event.</p>
-                            <p class="text-gray-600 text-lg">From intimate gatherings to grand celebrations, our team works tirelessly to ensure every detail is perfect.</p>
-                        </div>
-                    </div>
-                </section>`,
-            rentals: `
-                <section id="rentals" class="py-20">
-                    <div class="container mx-auto px-4">
-                        <h2 class="section-title fade-in-up">Our Rentals</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <a href="#rentals-bounce" class="rental-card fade-in-up">
-                                <img src="https://placehold.co/600x400/F8C8DC/333333?text=Bounce+Houses" alt="Bounce Houses" />
-                                <div class="rental-card-content">
-                                    <h3>Bounce Houses</h3>
-                                    <p>Fun for all ages</p>
-                                </div>
-                            </a>
-                            <a href="#rentals-flower" class="rental-card fade-in-up">
-                                <img src="https://placehold.co/600x400/C7B7FF/333333?text=Flower+Walls" alt="Flower Walls" />
-                                <div class="rental-card-content">
-                                    <h3>Flower Walls</h3>
-                                    <p>Instagram-worthy backdrops</p>
-                                </div>
-                            </a>
-                            <a href="#rentals-balloon" class="rental-card fade-in-up">
-                                <img src="https://placehold.co/600x400/D4AF37/333333?text=Balloon+Décor" alt="Balloon Décor" />
-                                <div class="rental-card-content">
-                                    <h3>Balloon Décor</h3>
-                                    <p>Custom balloon arrangements</p>
-                                </div>
-                            </a>
-                            <a href="#rentals-kids" class="rental-card fade-in-up">
-                                <img src="https://placehold.co/600x400/F8C8DC/333333?text=Kids+Parties" alt="Kids Parties" />
-                                <div class="rental-card-content">
-                                    <h3>Kids' Party Setups</h3>
-                                    <p>Everything for celebration</p>
-                                </div>
-                            </a>
-                            <a href="#rentals-wedding" class="rental-card fade-in-up">
-                                <img src="https://placehold.co/600x400/C7B7FF/333333?text=Wedding+Décor" alt="Wedding Décor" />
-                                <div class="rental-card-content">
-                                    <h3>Wedding Décor</h3>
-                                    <p>Elegant wedding solutions</p>
-                                </div>
-                            </a>
-                            <a href="#rentals-misc" class="rental-card fade-in-up">
-                                <img src="https://placehold.co/600x400/D4AF37/333333?text=Misc.+Rentals" alt="Misc. Rentals" />
-                                <div class="rental-card-content">
-                                    <h3>Miscellaneous Rentals</h3>
-                                    <p>And much more</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </section>`,
-            gallery: `
-                <section id="gallery" class="py-20 bg-light-gray">
-                    <div class="container mx-auto px-4">
-                        <h2 class="section-title fade-in-up">Gallery</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up cursor-pointer"><img src="https://images.pexels.com/photos/2788492/pexels-photo-2788492.jpeg" alt="Table setup" class="gallery-img w-full h-64 object-cover" /></div>
-                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up cursor-pointer"><img src="https://images.pexels.com/photos/1045541/pexels-photo-1045541.jpeg" alt="Event decor" class="gallery-img w-full h-64 object-cover" /></div>
-                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up cursor-pointer"><img src="https://images.pexels.com/photos/2062883/pexels-photo-2062883.jpeg" alt="Outdoor event" class="gallery-img w-full h-64 object-cover" /></div>
-                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up cursor-pointer"><img src="valentines.jpg" alt="Valentines" class="gallery-img w-full h-64 object-cover" /></div>
-                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up cursor-pointer"><img src="360-booth.jpg" alt="360 Booth" class="gallery-img w-full h-64 object-cover" /></div>
-                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up cursor-pointer"><img src="dry-ice-clouds-1.jpg" alt="Dry Ice" class="gallery-img w-full h-64 object-cover" /></div>
-                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up cursor-pointer"><img src="mrose.png" alt="Rose@60" class="gallery-img w-full h-64 object-cover" /></div>
-                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up cursor-pointer"><img src="mrose2.png" alt="Rose@60" class="gallery-img w-full h-64 object-cover" /></div>
-                            <div class="overflow-hidden rounded-lg shadow-lg fade-in-up cursor-pointer"><img src="africanday.png" alt="African Day" class="gallery-img w-full h-64 object-cover" /></div>
-                        </div>
-                    </div>
-                </section>`,
-            contact: `
-                <section id="contact" class="py-20">
-                    <div class="container mx-auto px-4">
-                        <h2 class="section-title fade-in-up">Get In Touch</h2>
-                        <div class="max-w-2xl mx-auto bg-light-gray p-8 rounded-lg fade-in-up">
-                            <p class="text-center text-gray-600 mb-8">Ready to plan your next event? Reach out to our team today.</p>
-                            <div class="space-y-6">
-                                <div class="text-center">
-                                    <i class="fas fa-envelope text-2xl text-gold mb-2"></i>
-                                    <p class="text-lg"><a href="mailto:tadriels24@gmail.com" class="text-gold hover:underline">tadriels24@gmail.com</a></p>
-                                </div>
-                                <div class="text-center">
-                                    <i class="fas fa-phone text-2xl text-gold mb-2"></i>
-                                    <p class="text-lg"><a href="tel:+13653840161" class="text-gold hover:underline">(365) 384-0161</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>`,
-            checkout: `
-                <section id="checkout" class="py-20 bg-light-gray">
-                    <div class="container mx-auto px-4">
-                        <div id="inquiry-wrapper">
-                            <h2 class="section-title fade-in-up">Complete Your Inquiry</h2>
-                            <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md fade-in-up">
-                                <form id="inquiry-form" class="space-y-6">
-                                    <div id="services-booked-list" class="mb-6 pb-6 border-b">
-                                        <h3 class="text-xl font-serif font-semibold mb-3">Services Booked</h3>
-                                    </div>
-                                    
-                                    <div>
-                                        <h3 class="text-xl font-serif font-semibold mb-4">Event Details</h3>
-                                        <div><label class="block mb-2 font-semibold">Celebrant Name*</label><input type="text" name="celebrant_name" class="w-full p-3 rounded border border-gray-300 focus:outline-none focus:border-gold" required></div>
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                                            <div><label class="block mb-2 font-semibold">Event Date*</label><input type="date" name="event_date" class="w-full p-3 rounded border border-gray-300 focus:outline-none focus:border-gold" required></div>
-                                            <div><label class="block mb-2 font-semibold">Event Time*</label><input type="time" name="event_time" class="w-full p-3 rounded border border-gray-300 focus:outline-none focus:border-gold" required></div>
-                                        </div>
-                                        <div class="mt-4"><label class="block mb-2 font-semibold">Additional Details</label><textarea name="message" rows="4" class="w-full p-3 rounded border border-gray-300 focus:outline-none focus:border-gold"></textarea></div>
-                                    </div>
-                                    
-                                    <div>
-                                        <h3 class="text-xl font-serif font-semibold mb-4">Your Contact Information</h3>
-                                        <div><label class="block mb-2 font-semibold">Name*</label><input type="text" name="customer_name" class="w-full p-3 rounded border border-gray-300 focus:outline-none focus:border-gold" required></div>
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                                            <div><label class="block mb-2 font-semibold">Email*</label><input type="email" name="customer_email" class="w-full p-3 rounded border border-gray-300 focus:outline-none focus:border-gold" required></div>
-                                            <div><label class="block mb-2 font-semibold">Phone*</label><input type="tel" name="customer_phone" class="w-full p-3 rounded border border-gray-300 focus:outline-none focus:border-gold" required></div>
-                                        </div>
-                                    </div>
-                                    
-                                    <button type="submit" class="w-full btn-primary py-3">Send Inquiry</button>
-                                </form>
-                            </div>
-                        </div>
-                        <div id="success-message" class="hidden max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md text-center">
-                            <h3 class="text-3xl font-serif text-green-600 mb-4">Thank You!</h3>
-                            <p class="text-gray-600 mb-6">Your inquiry has been sent successfully. We'll get back to you shortly.</p>
-                            <a href="#home" class="text-gold hover:underline">← Return to Home</a>
-                        </div>
-                    </div>
-                </section>`
+        const stand = $('#standalone-inquiry-form');
+        if (stand && !stand.dataset.bound) {
+          stand.dataset.bound = 'true';
+          stand.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const status = $('#standalone-inquiry-status');
+            const success = $('#standalone-inquiry-success');
+            const btn = stand.querySelector('button[type="submit"]');
+            if (!status || !btn || submittingStandalone) return;
+
+            const required = ['event_type', 'guest_count', 'preferred_date', 'inquiry_name', 'inquiry_email', 'inquiry_phone'];
+            let ok = true;
+            required.forEach(name => {
+              const el = stand.elements[name];
+              const valid = !!String(el?.value || '').trim();
+              setValidationState(el, valid);
+              ok = ok && valid;
+            });
+            const email = stand.elements.inquiry_email?.value.trim() || '';
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+              setValidationState(stand.elements.inquiry_email, false);
+              ok = false;
+            }
+            if (!ok) return showStatus(status, 'Please complete all required fields.', 'error');
+
+            const payload = {
+              event_type: stand.elements.event_type.value,
+              guest_count: stand.elements.guest_count.value,
+              preferred_date: stand.elements.preferred_date.value,
+              preferred_time: stand.elements.preferred_time.value || '',
+              venue: stand.elements.venue.value || '',
+              services: Array.from(stand.querySelectorAll('input[name="services"]:checked')).map(i => i.value).join(', ') || 'Not specified',
+              discount_code: (stand.elements.discount_code.value || '').trim().toUpperCase(),
+              inquiry_message: stand.elements.inquiry_message.value || '',
+              inquiry_name: stand.elements.inquiry_name.value,
+              inquiry_email: stand.elements.inquiry_email.value,
+              inquiry_phone: stand.elements.inquiry_phone.value,
+              contact_method: stand.elements.contact_method.value
+            };
+
+            submittingStandalone = true;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+            showStatus(status, 'Sending your inquiry...', 'info');
+
+            try {
+              await emailjs.send(SERVICE_ID, INQUIRY_TEMPLATE_ID, payload);
+              stand.classList.add('hidden');
+              success.classList.remove('hidden');
+              showStatus(status, 'Inquiry sent successfully.', 'success');
+            } catch {
+              showStatus(status, 'Sorry, we could not send your inquiry. Please try again.', 'error');
+            } finally {
+              submittingStandalone = false;
+              btn.disabled = false;
+              btn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i> Send Event Inquiry';
+            }
+          });
+        }
+
+        const checkout = $('#checkout-form');
+        if (checkout && !checkout.dataset.bound) {
+          checkout.dataset.bound = 'true';
+          checkout.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (!cart.length) return alert('Your cart is empty.');
+
+            const required = ['celebrant_name','event_date','event_time','event_type','guest_count','venue','customer_name','customer_email','customer_phone'];
+            let ok = true;
+            required.forEach(name => {
+              const el = checkout.elements[name];
+              const valid = !!String(el?.value || '').trim();
+              setValidationState(el, valid);
+              ok = ok && valid;
+            });
+            const email = checkout.elements.customer_email?.value.trim() || '';
+            const phone = checkout.elements.customer_phone?.value.trim() || '';
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+              setValidationState(checkout.elements.customer_email, false);
+              ok = false;
+            }
+            if (phone.replace(/\D/g, '').length < 7) {
+              setValidationState(checkout.elements.customer_phone, false);
+              ok = false;
+            }
+            if (!ok) return alert('Please complete all required fields.');
+
+            pendingInquiry = {
+              celebrant_name: checkout.elements.celebrant_name.value,
+              event_date: checkout.elements.event_date.value,
+              event_time: checkout.elements.event_time.value,
+              event_type: checkout.elements.event_type.value,
+              guest_count: checkout.elements.guest_count.value,
+              venue: checkout.elements.venue.value,
+              customer_name: checkout.elements.customer_name.value,
+              customer_email: checkout.elements.customer_email.value,
+              customer_phone: checkout.elements.customer_phone.value,
+              preferred_contact_method: checkout.elements.preferred_contact_method.value,
+              discount_code: (checkout.elements.discount_code.value || '').trim().toUpperCase(),
+              message: checkout.elements.message.value || '',
+              cart_items: cart.map(i => `${i.quantity}x ${i.name} - ${money((Number(i.price)||0) * (Number(i.quantity)||1))}`).join('\n')
+            };
+
+            const t = totals(cart, pendingInquiry.discount_code);
+            $('#confirmation-summary').textContent = `Subtotal: ${money(t.sub)} | Discount: ${t.disc > 0 ? `-${money(t.disc)}` : money(0)} | Total: ${money(t.total)}`;
+            $('#confirmation-list').innerHTML = `<div class="space-y-1">${cart.map(i => `<p><strong>${i.quantity}x</strong> ${escapeHTML(i.name)} - ${money((Number(i.price)||0) * (Number(i.quantity)||1))}</p>`).join('')}</div>`;
+            $('#confirmation-modal')?.classList.remove('invisible','opacity-0');
+          });
+        }
+
+        const confirmYes = $('#confirm-yes-btn');
+        if (confirmYes && !confirmYes.dataset.bound) {
+          confirmYes.dataset.bound = 'true';
+          confirmYes.addEventListener('click', async () => {
+            if (!pendingInquiry || submittingCheckout) return;
+            submittingCheckout = true;
+            confirmYes.disabled = true;
+            confirmYes.textContent = 'Sending...';
+
+            try {
+              const t = totals(cart, pendingInquiry.discount_code);
+              await emailjs.send(SERVICE_ID, INQUIRY_TEMPLATE_ID, { ...pendingInquiry, subtotal: t.sub.toFixed(2), discount: t.disc.toFixed(2), total: t.total.toFixed(2) });
+              $('#confirmation-modal')?.classList.add('invisible','opacity-0');
+              $('#checkout-form')?.classList.add('hidden');
+              $('#success-message')?.classList.remove('hidden');
+              cart = [];
+              saveCart();
+              updateCounts();
+              renderCart();
+            } catch {
+              alert('Failed to send. Please try again.');
+            } finally {
+              submittingCheckout = false;
+              confirmYes.disabled = false;
+              confirmYes.textContent = 'Send Inquiry';
+            }
+          });
+        }
+
+        const checkoutDiscount = $('#checkout-discount-code');
+        if (checkoutDiscount && !checkoutDiscount.dataset.bound) {
+          checkoutDiscount.dataset.bound = 'true';
+          checkoutDiscount.addEventListener('input', () => {
+            renderCheckout();
+            renderCart();
+          });
+        }
+      }
+
+      function renderRoute(route){
+        currentRoute = validRoute(route);
+        $('#page-content').innerHTML = '';
+        const home = $('#home');
+        if (home) home.style.display = currentRoute === 'home' ? 'flex' : 'none';
+
+        const map = {
+          about: pages.about,
+          rentals: pages.rentals,
+          gallery: pages.gallery,
+          contact: pages.contact,
+          'discount-code': pages.discount,
+          newsletter: pages.newsletter,
+          inquiry: pages.inquiry,
+          checkout: pages.checkout,
+          'rentals-bounce': rentals['rentals-bounce'],
+          'rentals-flower': rentals['rentals-flower'],
+          'rentals-balloon': rentals['rentals-balloon'],
+          'rentals-kids': rentals['rentals-kids'],
+          'rentals-wedding': rentals['rentals-wedding'],
+          'rentals-misc': rentals['rentals-misc']
         };
 
-        const rentalPages = {
-            bounce: `<section class="py-20"><div class="container mx-auto px-4"><h2 class="section-title">Bounce Houses</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">${createRentalItem('Classic Rainbow Bounce House', 'https://placehold.co/600x400/F8C8DC/333333?text=Rainbow+Bounce', 'Classic Rainbow Bounce House', 150)}${createRentalItem('Princess Bounce House', 'https://placehold.co/600x400/F8C8DC/333333?text=Princess+Bounce', 'Princess Bounce House', 175)}${createRentalItem('Sports Bounce House', 'https://placehold.co/600x400/F8C8DC/333333?text=Sports+Bounce', 'Sports Bounce House', 175)}</div></div></section>`,
-            flower: `<section class="py-20 bg-light-gray"><div class="container mx-auto px-4"><h2 class="section-title">Flower Walls</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">${createRentalItem('Blush Pink Flower Wall', 'https://placehold.co/600x400/F8C8DC/333333?text=Blush+Wall', 'Blush Pink Flower Wall', 250)}${createRentalItem('Lavender Dream Wall', 'https://placehold.co/600x400/C7B7FF/333333?text=Lavender+Wall', 'Lavender Dream Wall', 250)}${createRentalItem('Gold Glitter Wall', 'https://placehold.co/600x400/D4AF37/333333?text=Gold+Wall', 'Gold Glitter Wall', 300)}</div></div></section>`,
-            balloon: `<section class="py-20"><div class="container mx-auto px-4"><h2 class="section-title">Balloon Décor</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">${createRentalItem('Balloon Garland Arch', 'https://placehold.co/600x400/D4AF37/333333?text=Garland', 'Balloon Garland Arch', 200)}${createRentalItem('Organic Balloon Collection', 'https://placehold.co/600x400/D4AF37/333333?text=Organic', 'Organic Balloon Collection', 300)}${createRentalItem('Helium Balloon Bouquet', 'https://placehold.co/600x400/D4AF37/333333?text=Bouquet', 'Helium Balloon Bouquet', 100)}</div></div></section>`,
-            kids: `<section class="py-20 bg-light-gray"><div class="container mx-auto px-4"><h2 class="section-title">Kids' Party Setups</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">${createRentalItem('Kids Party Table & Chairs', 'https://placehold.co/600x400/F8C8DC/333333?text=Tables', 'Kids Party Table & Chairs', 75)}${createRentalItem('Character Cutout Pack', 'https://placehold.co/600x400/F8C8DC/333333?text=Cutouts', 'Character Cutout Pack', 60)}${createRentalItem('Party Banner Collection', 'https://placehold.co/600x400/F8C8DC/333333?text=Banners', 'Party Banner Collection', 40)}</div></div></section>`,
-            wedding: `<section class="py-20"><div class="container mx-auto px-4"><h2 class="section-title">Wedding Décor & Setups</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">${createRentalItem('Elegant Table Linens', 'https://placehold.co/600x400/C7B7FF/333333?text=Linens', 'Elegant Table Linens', 25)}${createRentalItem('Chiavari Chairs', 'https://placehold.co/600x400/C7B7FF/333333?text=Chairs', 'Chiavari Chairs', 8)}${createRentalItem('Wedding Arch', 'https://placehold.co/600x400/C7B7FF/333333?text=Arch', 'Wedding Arch', 400)}</div></div></section>`,
-            misc: `<section class="py-20 bg-light-gray"><div class="container mx-auto px-4"><h2 class="section-title">Miscellaneous Rentals</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">${createRentalItem('Cold Sparklers', 'cold-sparkler.jpeg', 'Cold Sparklers', 150)}${createRentalItem('Dry Ice Fog Machine', 'dry-ice-clouds-1.jpg', 'Dry Ice Fog Machine', 400)}${createRentalItem('360° Video Booth', '360-booth.jpg', '360° Video Booth', 500)}${createRentalItem('Round Banquet Tables', 'https://placehold.co/600x400/D4AF37/333333?text=Tables', 'Round Banquet Tables', 15)}${createRentalItem('Gold Chiavari Chairs', 'https://placehold.co/600x400/D4AF37/333333?text=Chairs', 'Gold Chiavari Chairs', 8)}</div></div></section>`
-        };
+        if (currentRoute === 'home') startHero(); else stopHero();
+        if (map[currentRoute]) $('#page-content').innerHTML = map[currentRoute];
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const pageContent = document.getElementById('page-content');
-            const navLinks = document.querySelectorAll('.nav-link, #mobile-menu a');
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileDropdowns = document.querySelectorAll('.mobile-dropdown > button');
-            const cartIcon = document.getElementById('cart-icon');
-            const mobileCartIcon = document.getElementById('mobile-cart-icon');
-            const cartSidebar = document.getElementById('cart-sidebar');
-            const closeCartBtn = document.getElementById('close-cart-btn');
-            const cartItemsContainer = document.getElementById('cart-items-container');
-            const cartCount = document.getElementById('cart-count');
-            const mobileCartCount = document.getElementById('mobile-cart-count');
-            const checkoutBtn = document.getElementById('checkout-btn');
-            const toast = document.getElementById('toast');
-            const confirmationModal = document.getElementById('confirmation-modal');
-            const confirmYesBtn = document.getElementById('confirm-yes-btn');
-            const confirmNoBtn = document.getElementById('confirm-no-btn');
-            const confirmationList = document.getElementById('confirmation-list');
-            const subtotalDisplay = document.getElementById('subtotal');
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            const closeLightboxBtn = document.getElementById('close-lightbox-btn');
-            const heroslides = document.querySelectorAll('.hero-slide');
-
-            let cart = JSON.parse(localStorage.getItem('tadrielsCart')) || [];
-            let inquiryData = {};
-            let currentSlide = 0;
-
-            // Hero slider
-            function slideHero() {
-                heroslides.forEach(slide => slide.classList.remove('active'));
-                currentSlide = (currentSlide + 1) % heroslides.length;
-                heroslides[currentSlide].classList.add('active');
-            }
-            
-            heroslides[0].classList.add('active');
-            setInterval(slideHero, 5000);
-
-            const saveCart = () => localStorage.setItem('tadrielsCart', JSON.stringify(cart));
-            const calculateSubtotal = () => cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-            
-            const updateCartCount = () => {
-                const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-                cartCount.style.display = count > 0 ? 'flex' : 'none';
-                mobileCartCount.style.display = count > 0 ? 'flex' : 'none';
-                cartCount.textContent = count;
-                mobileCartCount.textContent = count;
-            };
-
-            const showToast = (msg) => {
-                toast.textContent = msg;
-                toast.classList.remove('opacity-0');
-                setTimeout(() => toast.classList.add('opacity-0'), 2000);
-            };
-
-            const addToCart = (name, price) => {
-                const existing = cart.find(item => item.name === name);
-                if (existing) existing.quantity++;
-                else cart.push({ name, quantity: 1, price: parseFloat(price) });
-                saveCart();
-                updateCartCount();
-                renderCartItems();
-                showToast(`${name} added!`);
-            };
-
-            const removeFromCart = (name) => {
-                cart = cart.filter(item => item.name !== name);
-                saveCart();
-                updateCartCount();
-                renderCartItems();
-            };
-
-            const updateQuantity = (name, qty) => {
-                const item = cart.find(item => item.name === name);
-                if (item) {
-                    if (qty > 0) item.quantity = qty;
-                    else removeFromCart(name);
-                    saveCart();
-                    updateCartCount();
-                    renderCartItems();
-                }
-            };
-
-            const renderCartItems = () => {
-                if (cart.length === 0) {
-                    cartItemsContainer.innerHTML = '<p class="text-gray-500">Your cart is empty.</p>';
-                    subtotalDisplay.innerHTML = '';
-                    checkoutBtn.disabled = true;
-                    checkoutBtn.classList.add('opacity-50');
-                    return;
-                }
-                checkoutBtn.disabled = false;
-                checkoutBtn.classList.remove('opacity-50');
-                subtotalDisplay.innerHTML = `<strong>Total:</strong> $${calculateSubtotal().toFixed(2)}`;
-                cartItemsContainer.innerHTML = cart.map(item => `
-                    <div class="flex justify-between items-center mb-4 pb-4 border-b">
-                        <div>
-                            <p class="font-semibold">${item.name}</p>
-                            <p class="text-sm text-gray-500">$${item.price.toFixed(2)}</p>
-                        </div>
-                        <div class="flex items-center space-x-2">
-                            <input type="number" value="${item.quantity}" min="1" class="w-12 p-1 border rounded quantity-input" data-item="${item.name}" />
-                            <button class="remove-from-cart-btn text-red-500 hover:text-red-700 font-bold" data-item="${item.name}">✕</button>
-                        </div>
-                    </div>
-                `).join('');
-            };
-
-            const openCart = () => {
-                renderCartItems();
-                cartSidebar.classList.remove('invisible', 'opacity-0');
-                cartSidebar.querySelector('#cart-sidebar-content').classList.remove('translate-x-full');
-            };
-
-            const closeCart = () => {
-                cartSidebar.querySelector('#cart-sidebar-content').classList.add('translate-x-full');
-                setTimeout(() => cartSidebar.classList.add('invisible', 'opacity-0'), 300);
-            };
-
-            const openConfirmationModal = () => {
-                confirmationList.innerHTML = cart.map(item => `<p><strong>${item.quantity}x</strong> ${item.name} @ $${item.price.toFixed(2)}</p>`).join('');
-                confirmationList.innerHTML += `<hr class="my-2"><p class="font-bold text-right">Total: $${calculateSubtotal().toFixed(2)}</p>`;
-                confirmationModal.classList.remove('invisible', 'opacity-0');
-                confirmationModal.querySelector('.modal-content').classList.remove('scale-95', 'opacity-0');
-            };
-
-            const closeConfirmationModal = () => {
-                confirmationModal.querySelector('.modal-content').classList.add('scale-95', 'opacity-0');
-                setTimeout(() => confirmationModal.classList.add('invisible', 'opacity-0'), 300);
-            };
-
-            const loadPage = (hash) => {
-                const pageKey = hash.substring(1).split('-')[0] || 'home';
-                const rentalCat = hash.includes('rentals-') ? hash.substring(9) : null;
-
-                const heroSection = document.getElementById('home');
-                if (pageKey === 'home' && !rentalCat) heroSection.style.display='flex';
-                else heroSection.style.display='none';
-
-                pageContent.innerHTML = '';
-                if (pageKey === 'checkout') {
-                    pageContent.innerHTML = pages.checkout;
-                    const servicesList = document.getElementById('services-booked-list');
-                    if (servicesList) {
-                        servicesList.innerHTML += cart.map(item => `<p class="text-gray-700"><strong>${item.quantity}x</strong> ${item.name} - $${(item.price * item.quantity).toFixed(2)}</p>`).join('');
-                        servicesList.innerHTML += `<hr class="my-2"><p class="font-bold text-right">Total: $${calculateSubtotal().toFixed(2)}</p>`;
-                    }
-                } else if (rentalCat && rentalPages[rentalCat]) {
-                    pageContent.innerHTML = rentalPages[rentalCat];
-                } else if (pages[pageKey]) {
-                    pageContent.innerHTML = pages[pageKey];
-                }
-
-                window.scrollTo(0, 0);
-                updateActiveLink(hash);
-                setupPageEventListeners();
-                animateOnScroll();
-            };
-
-            const updateActiveLink = (hash) => {
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === (hash || '#home')) link.classList.add('active');
-                });
-            };
-
-            const setupPageEventListeners = () => {
-                document.querySelectorAll('.add-to-cart-btn').forEach(btn => 
-                    btn.addEventListener('click', e => addToCart(e.target.dataset.item, e.target.dataset.price))
-                );
-                cartItemsContainer.addEventListener('click', e => {
-                    if (e.target.classList.contains('remove-from-cart-btn')) removeFromCart(e.target.dataset.item);
-                });
-                document.querySelectorAll('.quantity-input').forEach(input => 
-                    input.addEventListener('change', e => updateQuantity(e.target.dataset.item, parseInt(e.target.value)))
-                );
-                document.querySelectorAll('.gallery-img').forEach(img => 
-                    img.addEventListener('click', e => {
-                        lightboxImg.src = e.target.src;
-                        lightbox.classList.remove('invisible', 'opacity-0');
-                    })
-                );
-
-                const form = document.getElementById('inquiry-form');
-                if (form) form.addEventListener('submit', e => {
-                    e.preventDefault();
-                    inquiryData = {
-                        celebrant_name: form.celebrant_name.value,
-                        event_date: form.event_date.value,
-                        event_time: form.event_time.value,
-                        message: form.message.value,
-                        customer_name: form.customer_name.value,
-                        customer_email: form.customer_email.value,
-                        customer_phone: form.customer_phone.value,
-                        cart_items: cart.map(item => `${item.quantity}x ${item.name} @ $${item.price.toFixed(2)}`).join('\n'),
-                        subtotal: calculateSubtotal().toFixed(2)
-                    };
-                    openConfirmationModal();
-                });
-            };
-
-            emailjs.init(PUBLIC_KEY);
-            loadPage(window.location.hash);
-            updateCartCount();
-
-            window.addEventListener('hashchange', () => loadPage(window.location.hash));
-            navLinks.forEach(link => link.addEventListener('click', e => {
-                if (link.getAttribute('href').startsWith('#')) {
-                    e.preventDefault();
-                    window.location.hash = link.getAttribute('href');
-                    if (!mobileMenu.classList.contains('hidden')) mobileMenu.classList.add('hidden');
-                }
-            }));
-
-            mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-            mobileDropdowns.forEach(btn => btn.addEventListener('click', e => {
-                e.stopPropagation();
-                btn.parentElement.classList.toggle('open');
-            }));
-
-            cartIcon.addEventListener('click', openCart);
-            mobileCartIcon.addEventListener('click', openCart);
-            closeCartBtn.addEventListener('click', closeCart);
-            cartSidebar.addEventListener('click', e => { if (e.target === cartSidebar) closeCart(); });
-            checkoutBtn.addEventListener('click', () => {
-                if (cart.length > 0) { closeCart(); window.location.hash = '#checkout'; }
-            });
-
-            confirmYesBtn.addEventListener('click', () => {
-                confirmYesBtn.disabled = true;
-                confirmYesBtn.textContent = 'Sending...';
-                emailjs.send(SERVICE_ID, INQUIRY_TEMPLATE_ID, inquiryData, PUBLIC_KEY)
-                    .then(() => {
-                        closeConfirmationModal();
-                        document.getElementById('inquiry-wrapper').classList.add('hidden');
-                        document.getElementById('success-message').classList.remove('hidden');
-                        cart = []; saveCart(); updateCartCount();
-                    })
-                    .catch(() => { closeConfirmationModal(); alert('Failed to send. Please try again.'); })
-                    .finally(() => { confirmYesBtn.disabled = false; confirmYesBtn.textContent = 'Send Inquiry'; });
-            });
-            confirmNoBtn.addEventListener('click', closeConfirmationModal);
-            confirmationModal.addEventListener('click', e => { if (e.target === confirmationModal) closeConfirmationModal(); });
-            closeLightboxBtn.addEventListener('click', () => lightbox.classList.add('invisible', 'opacity-0'));
-            lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.add('invisible', 'opacity-0'); });
-
-            function animateOnScroll() {
-                const observer = new IntersectionObserver(entries => {
-                    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-                }, { threshold: 0.1 });
-                document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
-            }
+        if (currentRoute === 'checkout') renderCheckout();
+        updateCounts();
+        renderCart();
+        bindPageForms();
+        observeFadeIn();
+        setActive(`#${currentRoute}`);
+        closeCart();
+        closeMobileMenu();
+        requestAnimationFrame(() => {
+          if (currentRoute !== 'home') window.scrollTo({ top: 0, behavior: 'auto' });
         });
-    </script>
+      }
 
+      function init() {
+        try { emailjs.init(PUBLIC_KEY); } catch {}
+        bindGlobal();
+        renderRoute(getRoute());
+        if (!location.hash) history.replaceState(null, '', '#home');
+      }
+
+      window.addEventListener('load', init, { once: true });
+    })();
+  </script>
 </body>
 </html>
