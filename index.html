@@ -71,8 +71,21 @@
     .mobile-dropdown-menu{display:none}
     .mobile-dropdown.open .mobile-dropdown-menu{display:block}
     .hero-section{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
-    .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;background-size:cover;background-position:center}
-    .hero-slide.active{opacity:1}
+    .hero-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.hero-slide.active {
+    opacity: 1;
+}
     .hero-overlay{position:absolute;inset:0;background:radial-gradient(circle at center, rgba(0,0,0,.24), rgba(0,0,0,.64));z-index:1}
     .hero-content{position:relative;z-index:2;color:#fff;text-align:center}
     .section-title{
@@ -187,7 +200,7 @@
       <div class="hero-slide active" style="background-image:url('https://images.pexels.com/photos/11474201/pexels-photo-11474201.jpeg');"></div>
       <div class="hero-slide" style="background-image:url('https://images.pexels.com/photos/265940/pexels-photo-265940.jpeg');"></div>
       <div class="hero-slide" style="background-image:url('https://images.pexels.com/photos/2306277/pexels-photo-2306277.jpeg');"></div>
-      <div class="hero-slide" style="background-image:url('https://images.pexels.com/photos/2306281/pexels-photo-2306281.jpeg');"></div>
+      <div class="hero-slide" style="background-image:url('https://images.pexels.com/photos/39005336/pexels-photo-39005336.jpeg');"></div>
       <div class="hero-overlay"></div>
       <div class="hero-content container mx-auto px-4">
         <h1 class="font-elegant text-5xl md:text-7xl mb-6">Celebrate in Style</h1>
@@ -490,15 +503,19 @@
 
       const imgFallback = "this.src='https://placehold.co/600x400/F5F5F5/2C2C2C?text=Image+Unavailable'";
 
-      const rentalCard = (name, img, price) => `
-        <div class="rental-card fade-in-up">
-          <img src="${img}" alt="${escapeHTML(name)}" onerror="${imgFallback}">
-          <div class="p-5 text-center">
-            <h3 class="text-xl font-serif mb-1">${escapeHTML(name)}</h3>
-            <p class="text-gold font-semibold mb-4">${money(price)}</p>
-            <button type="button" class="btn-primary add-to-cart" data-name="${escapeHTML(name)}" data-price="${price}" aria-label="Add ${escapeHTML(name)} to cart">Add to Cart</button>
-          </div>
-        </div>`;
+       const rentalCard = (name, img, price, checkoutUrl = '') => `
+  <div class="rental-card fade-in-up">
+    <img src="${img}" alt="${escapeHTML(name)}" onerror="${imgFallback}">
+    <div class="p-5 text-center">
+      <h3 class="text-xl font-serif mb-1">${escapeHTML(name)}</h3>
+      <p class="text-gold font-semibold mb-4">${money(price)}</p>
+      ${
+        checkoutUrl
+          ? `<a href="${checkoutUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary inline-block" aria-label="Book ${escapeHTML(name)}">Book Now</a>`
+          : `<button type="button" class="btn-primary add-to-cart" data-name="${escapeHTML(name)}" data-price="${price}" aria-label="Add ${escapeHTML(name)} to cart">Add to Cart</button>`
+      }
+    </div>
+  </div>`;
 
       const pages = {
         about: `<section id="about" class="py-20 bg-light-gray"><div class="container mx-auto px-4"><h2 class="section-title fade-in-up">Our Story</h2><div class="max-w-3xl mx-auto text-center fade-in-up"><p class="text-gray-600 text-lg mb-4">Born from a passion for unforgettable celebrations, Tadriels Events transforms special moments into magical experiences.</p><p class="text-gray-600 text-lg">From intimate gatherings to grand celebrations, our team ensures every detail feels elegant and seamless.</p></div></div></section>`,
@@ -513,7 +530,24 @@
 
       const rentals = {
         'rentals-bounce': `<section class="py-20"><div class="container mx-auto px-4"><h2 class="section-title fade-in-up">Bounce Houses</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">${rentalCard('Classic Rainbow Bounce House', 'https://placehold.co/600x400/F8C8DC/2C2C2C?text=Rainbow+Bounce', 150)}${rentalCard('Princess Bounce House', 'https://placehold.co/600x400/F8C8DC/2C2C2C?text=Princess+Bounce', 175)}${rentalCard('Sports Bounce House', 'https://placehold.co/600x400/F8C8DC/2C2C2C?text=Sports+Bounce', 175)}</div></div></section>`,
-        'rentals-flower': `<section class="py-20 bg-light-gray"><div class="container mx-auto px-4"><h2 class="section-title fade-in-up">Flower Walls</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">${rentalCard('Blush Pink Flower Wall', 'https://placehold.co/600x400/F8C8DC/2C2C2C?text=Blush+Wall', 250)}${rentalCard('Lavender Dream Wall', 'https://placehold.co/600x400/C7B7FF/2C2C2C?text=Lavender+Wall', 250)}${rentalCard('Gold Glitter Wall', 'https://placehold.co/600x400/D4AF37/2C2C2C?text=Gold+Wall', 300)}</div></div></section>`,
+        'rentals-flower': `<section class="py-20 bg-light-gray"><div class="container mx-auto px-4"><h2 class="section-title fade-in-up">Flower Walls</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+${rentalCard('Blush Pink Flower Wall', 'https://placehold.co/600x400/F8C8DC/2C2C2C?text=Blush+Wall', 250)}
+${rentalCard('Lavender Dream Wall', 'https://placehold.co/600x400/C7B7FF/2C2C2C?text=Lavender+Wall', 250)}
+<div class="rental-card fade-in-up">
+  <img src="https://placehold.co/600x400/D4AF37/2C2C2C?text=Gold+Wall" alt="Gold Glitter Wall" onerror="${imgFallback}">
+  <div class="p-5 text-center">
+    <h3 class="text-xl font-serif mb-1">Gold Glitter Wall</h3>
+    <p class="text-gold font-semibold mb-4">${money(300)}</p>
+    <a href="https://checkout.square.site/merchant/MLX7GVT2ABN8J/checkout/RVLJBKZKF7VPYSQCEM4OPF3Z?src=sheet"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="btn-primary inline-block"
+       aria-label="Book Gold Glitter Wall">
+       Book Now
+    </a>
+  </div>
+</div>
+</div></div></section>`,
         'rentals-balloon': `<section class="py-20"><div class="container mx-auto px-4"><h2 class="section-title fade-in-up">Balloon Décor</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">${rentalCard('Balloon Garland Arch', 'https://placehold.co/600x400/D4AF37/2C2C2C?text=Garland', 200)}${rentalCard('Organic Balloon Collection', 'https://placehold.co/600x400/D4AF37/2C2C2C?text=Organic', 300)}${rentalCard('Helium Balloon Bouquet', 'https://placehold.co/600x400/D4AF37/2C2C2C?text=Bouquet', 100)}</div></div></section>`,
         'rentals-kids': `<section class="py-20 bg-light-gray"><div class="container mx-auto px-4"><h2 class="section-title fade-in-up">Kids' Party Setups</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">${rentalCard('Kids Party Table & Chairs', 'https://placehold.co/600x400/F8C8DC/2C2C2C?text=Tables', 75)}${rentalCard('Character Cutout Pack', 'https://placehold.co/600x400/F8C8DC/2C2C2C?text=Cutouts', 60)}${rentalCard('Party Banner Collection', 'https://placehold.co/600x400/F8C8DC/2C2C2C?text=Banners', 40)}</div></div></section>`,
         'rentals-wedding': `<section class="py-20"><div class="container mx-auto px-4"><h2 class="section-title fade-in-up">Wedding Décor</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">${rentalCard('Elegant Table Linens', 'https://placehold.co/600x400/C7B7FF/2C2C2C?text=Linens', 25)}${rentalCard('Chiavari Chairs', 'https://placehold.co/600x400/C7B7FF/2C2C2C?text=Chairs', 8)}${rentalCard('Wedding Arch', 'https://placehold.co/600x400/C7B7FF/2C2C2C?text=Arch', 400)}</div></div></section>`,
